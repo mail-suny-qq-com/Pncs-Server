@@ -56,6 +56,9 @@ public class GenConfig {
     /** 作者 */
     private String author;
 
+    /** 作者 */
+    private String remark;
+
     /** 表前缀 */
     private String prefix;
 

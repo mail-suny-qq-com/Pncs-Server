@@ -26,11 +26,7 @@
             <artifactId>pncs-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.pactera</groupId>
-            <artifactId>pncs-indicator</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
     </dependencies>
 
 </project>

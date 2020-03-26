@@ -14,11 +14,11 @@
     <modules>
         <module>pncs-indicator-manager</module>
     </modules>
-
     <dependencies>
         <dependency>
-            <groupId>com.pactera</groupId>
-            <artifactId>pncs-core</artifactId>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
         </dependency>
     </dependencies>
+
 </project>

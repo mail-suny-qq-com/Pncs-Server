@@ -1,16 +1,15 @@
-package ${package}.service.mapper;
+package ${package}.mapper;
 
-import me.zhengjie.base.BaseMapper;
-import ${package}.domain.${className};
-import ${package}.service.dto.${className}Dto;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
+import com.pactera.core.base.mapper.BaseMapper;
+import ${package}.model.${className};
+import org.apache.ibatis.annotations.Mapper;
 
 /**
+* ${remark}Mapper
 * @author ${author}
 * @date ${date}
 */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface ${className}Mapper extends BaseMapper<${className}Dto, ${className}> {
+@Mapper
+public interface ${className}Mapper extends BaseMapper<${className}> {
 
 }

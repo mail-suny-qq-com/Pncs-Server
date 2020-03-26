@@ -8,8 +8,14 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <version>${parent.version}</version>
     <artifactId>pncs-indicators-service</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-indicators-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

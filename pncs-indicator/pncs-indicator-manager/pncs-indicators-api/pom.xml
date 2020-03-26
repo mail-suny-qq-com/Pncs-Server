@@ -11,5 +11,11 @@
 
     <artifactId>pncs-indicators-api</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -11,5 +11,16 @@
 
     <artifactId>pncs-indicators-rest</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-indicators-service</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.zhengjie</groupId>
+            <artifactId>eladmin-logging</artifactId>
+            <version>2.4</version>
+        </dependency>
+    </dependencies>
 </project>
