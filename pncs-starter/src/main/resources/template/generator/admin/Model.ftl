@@ -1,5 +1,7 @@
 package ${package}.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -31,6 +33,8 @@ import java.io.Serializable;
 * @author ${author}
 * @date ${date}
 */
+@Getter
+@Setter
 @ApiModel("${remark}")
 @Alias("${className}")
 @TableName("${tableName}")
@@ -48,7 +52,7 @@ private static final long serialVersionUID = 1L;
     @ApiModelProperty(value = "${column.remark}", dataType = " ${column.columnType}", example = "")
     </#if>
     <#if column.columnKey = 'PRI'>
-    @TableId(type = IdType.ID_WORKER_STR)
+    @TableId(type = IdType.ASSIGN_ID)
     </#if>
     @TableField("${column.columnName}")
     //@Column(name = "${column.columnName}"<#if column.columnKey = 'UNI'>,unique = true</#if><#if column.istNotNull && column.columnKey != 'PRI'>,nullable = false</#if>)

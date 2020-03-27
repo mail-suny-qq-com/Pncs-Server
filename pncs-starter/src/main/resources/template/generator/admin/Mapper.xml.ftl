@@ -38,13 +38,13 @@
         <include refid="tableName"></include>
         WHERE 1=1
 		<#list columns as field>
-			<if test="variables.${field.changeColumnName} != null and variables.${field.changeColumnName} != ''">
+			<if test="variable.${field.changeColumnName} != null and variable.${field.changeColumnName} != ''">
                 AND ${field.columnName}
                 <choose>
-                    <when test="variables.operators.${field.changeColumnName} != null and variables.operators.${field.changeColumnName} != '' ">${r"${"}variables.operators.${field.changeColumnName}${r"}"}</when>
+                    <when test="variable.operators.${field.changeColumnName} != null and variable.operators.${field.changeColumnName} != '' ">${r"${"}variable.operators.${field.changeColumnName}${r"}"}</when>
                     <otherwise> = </otherwise>
                 </choose>
-				${r"#{"}variables.${field.changeColumnName}${r"}"}
+				${r"#{"}variable.${field.changeColumnName}${r"}"}
             </if>
 		</#list>
     </select>

@@ -97,11 +97,13 @@
             <version>2.2.5.RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <!--lombok插件-->
         <dependency>
-            <groupId>com.pactera</groupId>
-            <artifactId>pncs-indicator</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

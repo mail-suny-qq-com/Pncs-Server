@@ -22,4 +22,7 @@ import java.util.Map;
 @Service
 public class ${className}ServiceImpl  extends BaseServiceImpl<${className}Mapper, ${className}> implements I${className}Service {
     private static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
+
+    @Resource
+    private ${className}Mapper mapper;
 }

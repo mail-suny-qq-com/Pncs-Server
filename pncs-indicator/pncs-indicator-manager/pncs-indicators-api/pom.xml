@@ -15,7 +15,12 @@
         <dependency>
             <groupId>com.pactera</groupId>
             <artifactId>pncs-core</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
         </dependency>
     </dependencies>
 </project>
