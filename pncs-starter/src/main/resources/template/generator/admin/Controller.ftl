@@ -74,7 +74,7 @@ public class ${className}Controller  extends BaseController {
     @Log("批量删除${remark}")
     @PreAuthorize("@el.check('${changeClassName}:del')")
     @DeleteMapping
-    public Message<Integer>  delete(@NotEmpty(message = "${"$"}{${changeClassName}.ids.notEmpty}") @RequestBody List<String> ids) {
+    public Message<Integer>  delete(@NotEmpty(message = "${r"$"}{${changeClassName}.ids.notEmpty}") @RequestBody List<String> ids) {
         logger.debug("开始批量删除${remark}信息……");
         return ${changeClassName}Service.deleteByIds(ids);
      }

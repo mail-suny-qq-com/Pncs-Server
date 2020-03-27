@@ -43,6 +43,7 @@ public class GenUtil {
         templateNames.add("Model");
         //templateNames.add("Dto");
         templateNames.add("Mapper");
+        templateNames.add("Mapper.xml");
         templateNames.add("Controller");
         //templateNames.add("QueryCriteria");
         templateNames.add("Service");
@@ -348,7 +349,7 @@ public class GenUtil {
         }
 
         if ("Service".equals(templateName)) {
-            return packagePath + "service" + File.separator + "I"+className + "Service.java";
+            return packagePath + "service" + File.separator + "I" + className + "Service.java";
         }
 
         if ("ServiceImpl".equals(templateName)) {
@@ -365,6 +366,10 @@ public class GenUtil {
 
         if ("Mapper".equals(templateName)) {
             return packagePath + "mapper" + File.separator + className + "Mapper.java";
+        }
+
+        if ("Mapper.xml".equals(templateName)) {
+            return packagePath + "mapper" + File.separator + className + "Mapper.xml";
         }
 
         if ("Repository".equals(templateName)) {
@@ -398,6 +403,7 @@ public class GenUtil {
             writer = new FileWriter(file);
             template.render(map, writer);
         } catch (TemplateException | IOException e) {
+            log.error("生成代码发生异常", e);
             throw new RuntimeException(e);
         } finally {
             assert writer != null;

@@ -1,7 +1,6 @@
 package com.pactera.core.base.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.pactera.core.base.mapper.BaseMapper;
 import com.pactera.core.base.service.IBaseService;
 import com.pactera.core.exception.BusinessException;
@@ -31,7 +30,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBaseService
     private M mapper;
 
     @Autowired
-    IService<T> service;
+    ServiceImpl<M, T> service;
 
 
     /**
