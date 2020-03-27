@@ -36,7 +36,7 @@ public class ${className}Controller  extends BaseController {
     */
     @Log("新增保存${remark}")
     @PreAuthorize("@el.check('${changeClassName}:add')")
-    @ApiOperation(httpMethod = "POST", value = "${remark}信息新增保存", nickname = "save", notes = "", tags = {"save",})
+    @ApiOperation(httpMethod = "POST", value = "${remark}信息新增保存", nickname = "save", notes = "")
     @PostMapping
     public Message<${className}> save(@ApiParam(name = "${changeClassName}", value = "${remark}对象") @Validated @RequestBody ${className} ${changeClassName}) {
         logger.debug("开始保存${remark}信息……");
@@ -46,7 +46,7 @@ public class ${className}Controller  extends BaseController {
     /**
     * 修改保存${remark}
     */
-    @ApiOperation(httpMethod = "PUT", value = "${remark}信息修改保存", nickname = "update", notes = "", tags = {"update",})
+    @ApiOperation(httpMethod = "PUT", value = "${remark}信息修改保存", nickname = "update", notes = "")
     @PutMapping
     @Log("修改${apiAlias}")
     @PreAuthorize("@el.check('${changeClassName}:edit')")
