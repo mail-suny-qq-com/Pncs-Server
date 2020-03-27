@@ -1,8 +1,6 @@
 package ${package}.service.impl;
 
 import com.pactera.core.base.service.impl.BaseServiceImpl;
-import com.pactera.core.message.Message;
-import com.pactera.core.wrapper.QueryWrapper;
 import ${package}.mapper.${className}Mapper;
 import ${package}.model.${className};
 import ${package}.service.I${className}Service;
@@ -11,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
 * ${remark}服务实现

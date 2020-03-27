@@ -9,7 +9,7 @@ import ${package}.service.I${className}Service;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping("/{version:v\\d+}/${apiAlias}/${changeClassName}s")
 public class ${className}Controller  extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
-    @Autowired
+    @Resource
     private I${className}Service ${changeClassName}Service;
 
     /**
@@ -84,8 +84,8 @@ public class ${className}Controller  extends BaseController {
     */
     @ApiOperation(httpMethod = "GET", value = "根据主键查询${remark}", notes = "")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", dataType = "String", name = "id", value = "${remark}ID")})
-    @GetMapping("/{userId}")
-    public Message<${className}> getById(@PathVariable("userId") String id) {
+    @GetMapping("/{id}")
+    public Message<${className}> getById(@PathVariable("id") String id) {
         logger.debug("开始查询${remark}信息……");
         return ${changeClassName}Service.getById(id);
     }
@@ -94,11 +94,11 @@ public class ${className}Controller  extends BaseController {
     * 查询${remark}信息列表(分页)
     */
     @ApiOperation(httpMethod = "GET", value = "查询${remark}列表可分页", notes = "")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "每页条数"),
-    @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "offset", value = "页码"),
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "size", value = "每页条数"),
+    @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "page", value = "页码"),
     @ApiImplicitParam(paramType = "query", dataType = "${className}", name = "${changeClassName}", value = "查询条件")})
     @GetMapping
-    public Message<IPage<${className}>> queryPageList(@RequestParam(value = "limit", required = false) Integer limit, @RequestParam(value = "offset", required = false) Integer offset, @ModelAttribute ${className} ${changeClassName}) {
+    public Message<IPage<${className}>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute ${className} ${changeClassName}) {
         logger.debug("开始查询${remark}列表信息……");
         return ${changeClassName}Service.findForPageList(limit, offset, ${changeClassName});
     }
