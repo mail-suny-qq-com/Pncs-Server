@@ -1,6 +1,9 @@
 server:
   port: 8000
-
+  servlet:
+    session:
+      timeout: 600s
+    contextPath: /api
 spring:
   freemarker:
     check-template-location: false
@@ -17,7 +20,7 @@ spring:
   jpa:
     properties:
       hibernate:
-       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
       #dialect: org.hibernate.dialect.Oracle10gDialect
     open-in-view: true
 
