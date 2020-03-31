@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pactera.indicators.parameter.mapper.IndParameterMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		IND_PARAMETER
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+				PARM_ID,
+				CATEGORY_ID,
+				PARM_CODE,
+				PARM_NAME,
+				PARM_TYPE,
+				PARM_VALUE,
+				PARM_DESC,
+				CRT_USER_CODE,
+				CRT_ORG_CODE,
+				CRT_DATE,
+				UPD_USER_CODE,
+				UPD_ORG_CODE,
+				UPD_DATE
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+				#{parmId},
+				#{categoryId},
+				#{parmCode},
+				#{parmName},
+				#{parmType},
+				#{parmValue},
+				#{parmDesc},
+				#{crtUserCode},
+				#{crtOrgCode},
+				#{crtDate},
+				#{updUserCode},
+				#{updOrgCode},
+				#{updDate}
+	</sql>
+
+    <!-- 分页查询指标参数-查询列信息 -->
+    <select id="findForList" parameterType="Map"
+            resultType="com.pactera.indicators.parameter.model.IndParameter">
+        SELECT
+        <include refid="Field"></include>
+        FROM
+        <include refid="tableName"></include>
+        WHERE 1=1
+			<if test="variable.parmId != null and variable.parmId != ''">
+                AND PARM_ID
+                <choose>
+                    <when test="variable.operators.parmId != null and variable.operators.parmId != '' ">${variable.operators.parmId}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmId}
+            </if>
+			<if test="variable.categoryId != null and variable.categoryId != ''">
+                AND CATEGORY_ID
+                <choose>
+                    <when test="variable.operators.categoryId != null and variable.operators.categoryId != '' ">${variable.operators.categoryId}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.categoryId}
+            </if>
+			<if test="variable.parmCode != null and variable.parmCode != ''">
+                AND PARM_CODE
+                <choose>
+                    <when test="variable.operators.parmCode != null and variable.operators.parmCode != '' ">${variable.operators.parmCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmCode}
+            </if>
+			<if test="variable.parmName != null and variable.parmName != ''">
+                AND PARM_NAME
+                <choose>
+                    <when test="variable.operators.parmName != null and variable.operators.parmName != '' ">${variable.operators.parmName}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmName}
+            </if>
+			<if test="variable.parmType != null and variable.parmType != ''">
+                AND PARM_TYPE
+                <choose>
+                    <when test="variable.operators.parmType != null and variable.operators.parmType != '' ">${variable.operators.parmType}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmType}
+            </if>
+			<if test="variable.parmValue != null and variable.parmValue != ''">
+                AND PARM_VALUE
+                <choose>
+                    <when test="variable.operators.parmValue != null and variable.operators.parmValue != '' ">${variable.operators.parmValue}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmValue}
+            </if>
+			<if test="variable.parmDesc != null and variable.parmDesc != ''">
+                AND PARM_DESC
+                <choose>
+                    <when test="variable.operators.parmDesc != null and variable.operators.parmDesc != '' ">${variable.operators.parmDesc}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.parmDesc}
+            </if>
+			<if test="variable.crtUserCode != null and variable.crtUserCode != ''">
+                AND CRT_USER_CODE
+                <choose>
+                    <when test="variable.operators.crtUserCode != null and variable.operators.crtUserCode != '' ">${variable.operators.crtUserCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtUserCode}
+            </if>
+			<if test="variable.crtOrgCode != null and variable.crtOrgCode != ''">
+                AND CRT_ORG_CODE
+                <choose>
+                    <when test="variable.operators.crtOrgCode != null and variable.operators.crtOrgCode != '' ">${variable.operators.crtOrgCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtOrgCode}
+            </if>
+			<if test="variable.crtDate != null and variable.crtDate != ''">
+                AND CRT_DATE
+                <choose>
+                    <when test="variable.operators.crtDate != null and variable.operators.crtDate != '' ">${variable.operators.crtDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtDate}
+            </if>
+			<if test="variable.updUserCode != null and variable.updUserCode != ''">
+                AND UPD_USER_CODE
+                <choose>
+                    <when test="variable.operators.updUserCode != null and variable.operators.updUserCode != '' ">${variable.operators.updUserCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updUserCode}
+            </if>
+			<if test="variable.updOrgCode != null and variable.updOrgCode != ''">
+                AND UPD_ORG_CODE
+                <choose>
+                    <when test="variable.operators.updOrgCode != null and variable.operators.updOrgCode != '' ">${variable.operators.updOrgCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updOrgCode}
+            </if>
+			<if test="variable.updDate != null and variable.updDate != ''">
+                AND UPD_DATE
+                <choose>
+                    <when test="variable.operators.updDate != null and variable.operators.updDate != '' ">${variable.operators.updDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updDate}
+            </if>
+    </select>
+</mapper>
