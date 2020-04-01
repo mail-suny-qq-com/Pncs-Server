@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pactera.indicators.indicator.mapper.IndIndicatorInfoMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		IND_INDICATOR_INFO
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+				ID,
+				IE_CODE,
+				IE_NAME,
+				CATEGORY_ID,
+				IE_PROP,
+				IE_TYPE,
+				IE_DESC,
+				IE_RULE,
+				IE_DEFAULT_VALUE,
+				IE_METHOD,
+				CALC_FREQ,
+				STATUS,
+				IE_DATA_UNIT,
+				IE_LEVEL,
+				START_DATE,
+				END_DATE,
+				RETENTION,
+				PROCESS_INSTANCE_ID,
+				MANAGE_DEPT,
+				CRT_USER_CODE,
+				CRT_ORG_CODE,
+				CRT_DATE,
+				UPD_USER_CODE,
+				UPD_ORG_CODE,
+				UPD_DATE
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+				#{id},
+				#{ieCode},
+				#{ieName},
+				#{categoryId},
+				#{ieProp},
+				#{ieType},
+				#{ieDesc},
+				#{ieRule},
+				#{ieDefaultValue},
+				#{ieMethod},
+				#{calcFreq},
+				#{status},
+				#{ieDataUnit},
+				#{ieLevel},
+				#{startDate},
+				#{endDate},
+				#{retention},
+				#{processInstanceId},
+				#{manageDept},
+				#{crtUserCode},
+				#{crtOrgCode},
+				#{crtDate},
+				#{updUserCode},
+				#{updOrgCode},
+				#{updDate}
+	</sql>
+
+    <!-- 分页查询指标基本信息-查询列信息 -->
+    <select id="findForList" parameterType="Map"
+            resultType="com.pactera.indicators.indicator.model.IndIndicatorInfo">
+        SELECT
+        <include refid="Field"></include>
+        FROM
+        <include refid="tableName"></include>
+        WHERE 1=1
+			<if test="variable.id != null and variable.id != ''">
+                AND ID
+                <choose>
+                    <when test="variable.operators.id != null and variable.operators.id != '' ">${variable.operators.id}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.id}
+            </if>
+			<if test="variable.ieCode != null and variable.ieCode != ''">
+                AND IE_CODE
+                <choose>
+                    <when test="variable.operators.ieCode != null and variable.operators.ieCode != '' ">${variable.operators.ieCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieCode}
+            </if>
+			<if test="variable.ieName != null and variable.ieName != ''">
+                AND IE_NAME
+                <choose>
+                    <when test="variable.operators.ieName != null and variable.operators.ieName != '' ">${variable.operators.ieName}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieName}
+            </if>
+			<if test="variable.categoryId != null and variable.categoryId != ''">
+                AND CATEGORY_ID
+                <choose>
+                    <when test="variable.operators.categoryId != null and variable.operators.categoryId != '' ">${variable.operators.categoryId}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.categoryId}
+            </if>
+			<if test="variable.ieProp != null and variable.ieProp != ''">
+                AND IE_PROP
+                <choose>
+                    <when test="variable.operators.ieProp != null and variable.operators.ieProp != '' ">${variable.operators.ieProp}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieProp}
+            </if>
+			<if test="variable.ieType != null and variable.ieType != ''">
+                AND IE_TYPE
+                <choose>
+                    <when test="variable.operators.ieType != null and variable.operators.ieType != '' ">${variable.operators.ieType}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieType}
+            </if>
+			<if test="variable.ieDesc != null and variable.ieDesc != ''">
+                AND IE_DESC
+                <choose>
+                    <when test="variable.operators.ieDesc != null and variable.operators.ieDesc != '' ">${variable.operators.ieDesc}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieDesc}
+            </if>
+			<if test="variable.ieRule != null and variable.ieRule != ''">
+                AND IE_RULE
+                <choose>
+                    <when test="variable.operators.ieRule != null and variable.operators.ieRule != '' ">${variable.operators.ieRule}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieRule}
+            </if>
+			<if test="variable.ieDefaultValue != null and variable.ieDefaultValue != ''">
+                AND IE_DEFAULT_VALUE
+                <choose>
+                    <when test="variable.operators.ieDefaultValue != null and variable.operators.ieDefaultValue != '' ">${variable.operators.ieDefaultValue}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieDefaultValue}
+            </if>
+			<if test="variable.ieMethod != null and variable.ieMethod != ''">
+                AND IE_METHOD
+                <choose>
+                    <when test="variable.operators.ieMethod != null and variable.operators.ieMethod != '' ">${variable.operators.ieMethod}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieMethod}
+            </if>
+			<if test="variable.calcFreq != null and variable.calcFreq != ''">
+                AND CALC_FREQ
+                <choose>
+                    <when test="variable.operators.calcFreq != null and variable.operators.calcFreq != '' ">${variable.operators.calcFreq}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.calcFreq}
+            </if>
+			<if test="variable.status != null and variable.status != ''">
+                AND STATUS
+                <choose>
+                    <when test="variable.operators.status != null and variable.operators.status != '' ">${variable.operators.status}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.status}
+            </if>
+			<if test="variable.ieDataUnit != null and variable.ieDataUnit != ''">
+                AND IE_DATA_UNIT
+                <choose>
+                    <when test="variable.operators.ieDataUnit != null and variable.operators.ieDataUnit != '' ">${variable.operators.ieDataUnit}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieDataUnit}
+            </if>
+			<if test="variable.ieLevel != null and variable.ieLevel != ''">
+                AND IE_LEVEL
+                <choose>
+                    <when test="variable.operators.ieLevel != null and variable.operators.ieLevel != '' ">${variable.operators.ieLevel}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.ieLevel}
+            </if>
+			<if test="variable.startDate != null and variable.startDate != ''">
+                AND START_DATE
+                <choose>
+                    <when test="variable.operators.startDate != null and variable.operators.startDate != '' ">${variable.operators.startDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.startDate}
+            </if>
+			<if test="variable.endDate != null and variable.endDate != ''">
+                AND END_DATE
+                <choose>
+                    <when test="variable.operators.endDate != null and variable.operators.endDate != '' ">${variable.operators.endDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.endDate}
+            </if>
+			<if test="variable.retention != null and variable.retention != ''">
+                AND RETENTION
+                <choose>
+                    <when test="variable.operators.retention != null and variable.operators.retention != '' ">${variable.operators.retention}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.retention}
+            </if>
+			<if test="variable.processInstanceId != null and variable.processInstanceId != ''">
+                AND PROCESS_INSTANCE_ID
+                <choose>
+                    <when test="variable.operators.processInstanceId != null and variable.operators.processInstanceId != '' ">${variable.operators.processInstanceId}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.processInstanceId}
+            </if>
+			<if test="variable.manageDept != null and variable.manageDept != ''">
+                AND MANAGE_DEPT
+                <choose>
+                    <when test="variable.operators.manageDept != null and variable.operators.manageDept != '' ">${variable.operators.manageDept}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.manageDept}
+            </if>
+			<if test="variable.crtUserCode != null and variable.crtUserCode != ''">
+                AND CRT_USER_CODE
+                <choose>
+                    <when test="variable.operators.crtUserCode != null and variable.operators.crtUserCode != '' ">${variable.operators.crtUserCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtUserCode}
+            </if>
+			<if test="variable.crtOrgCode != null and variable.crtOrgCode != ''">
+                AND CRT_ORG_CODE
+                <choose>
+                    <when test="variable.operators.crtOrgCode != null and variable.operators.crtOrgCode != '' ">${variable.operators.crtOrgCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtOrgCode}
+            </if>
+			<if test="variable.crtDate != null and variable.crtDate != ''">
+                AND CRT_DATE
+                <choose>
+                    <when test="variable.operators.crtDate != null and variable.operators.crtDate != '' ">${variable.operators.crtDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.crtDate}
+            </if>
+			<if test="variable.updUserCode != null and variable.updUserCode != ''">
+                AND UPD_USER_CODE
+                <choose>
+                    <when test="variable.operators.updUserCode != null and variable.operators.updUserCode != '' ">${variable.operators.updUserCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updUserCode}
+            </if>
+			<if test="variable.updOrgCode != null and variable.updOrgCode != ''">
+                AND UPD_ORG_CODE
+                <choose>
+                    <when test="variable.operators.updOrgCode != null and variable.operators.updOrgCode != '' ">${variable.operators.updOrgCode}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updOrgCode}
+            </if>
+			<if test="variable.updDate != null and variable.updDate != ''">
+                AND UPD_DATE
+                <choose>
+                    <when test="variable.operators.updDate != null and variable.operators.updDate != '' ">${variable.operators.updDate}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.updDate}
+            </if>
+    </select>
+</mapper>
