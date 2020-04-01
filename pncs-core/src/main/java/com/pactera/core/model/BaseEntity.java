@@ -12,34 +12,34 @@ import java.util.HashMap;
 
 public abstract class BaseEntity implements Serializable {
     @ApiModelProperty(value = "创建人编号", dataType = "String", example = "020001")
-    @TableField(value= "CRT_USER_CODE",fill = FieldFill.INSERT)
-    private String crtUserCode;
+    @TableField(value = "CRT_USER_CODE", fill = FieldFill.INSERT)
+    protected String crtUserCode;
     @ApiModelProperty(value = "创建人机构号", dataType = "String", example = "10010")
-    @TableField(value= "CRT_ORG_CODE",fill = FieldFill.INSERT)
-    private String crtOrgCode;
+    @TableField(value = "CRT_ORG_CODE", fill = FieldFill.INSERT)
+    protected String crtOrgCode;
     @ApiModelProperty(value = "创建时间", dataType = "Date")
-    @TableField(value = "CRT_DATE",fill = FieldFill.INSERT)
-    private Date crtDate;
+    @TableField(value = "CRT_DATE", fill = FieldFill.INSERT)
+    protected Date crtDate;
     @ApiModelProperty(value = "最后修改人编号", dataType = "String", example = "020002")
-    @TableField(value= "UPD_USER_CODE", fill = FieldFill.UPDATE)
-    private String updUserCode;
+    @TableField(value = "UPD_USER_CODE", fill = FieldFill.UPDATE)
+    protected String updUserCode;
     @ApiModelProperty(value = "最后修改人机构号", dataType = "String", example = "10010")
 
     @TableField(value = "UPD_ORG_CODE", fill = FieldFill.UPDATE)
-    private String updOrgCode;
+    protected String updOrgCode;
     @ApiModelProperty(value = "最后修改时间", dataType = "Date")
 
     @TableField(value = "UPD_DATE", fill = FieldFill.UPDATE)
-    private Date updDate;
+    protected Date updDate;
     /**
      * 查询条件匹配方式
      */
     @TableField(exist = false)
     public Object operators = new HashMap();
     @TableField(exist = false)
-    String _orgAuth;
+    public String _orgAuth;
     @TableField(exist = false)
-    String _userAuth;
+    public String _userAuth;
 
 
     public String getCrtUserCode() {

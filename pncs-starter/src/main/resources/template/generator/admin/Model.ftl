@@ -46,31 +46,32 @@ private static final long serialVersionUID = 1L;
 
 <#if columns??>
     <#list columns as column>
-
-    <#if column.remark != ''>
-    /** ${column.remark} */
-    @ApiModelProperty(value = "${column.remark}", dataType = " ${column.columnType}", example = "")
-    </#if>
-    <#if column.columnKey = 'PRI'>
-    @TableId(type = IdType.ASSIGN_ID)
-    </#if>
-    @TableField("${column.columnName}")
-    //@Column(name = "${column.columnName}"<#if column.columnKey = 'UNI'>,unique = true</#if><#if column.istNotNull && column.columnKey != 'PRI'>,nullable = false</#if>)
-    <#if column.istNotNull && column.columnKey != 'PRI'>
-        <#if column.columnType = 'String'>
-    @NotBlank
-        <#else>
-    @NotNull
+         <#if column.columnName?upper_case != 'CRT_USER_CODE' && column.columnName?upper_case != 'CRT_DATE'  && column.columnName?upper_case != 'CRT_ORG_CODE' &&  column.columnName?upper_case != 'UPD_USER_CODE' && column.columnName?upper_case != 'UPD_DATE'  && column.columnName?upper_case != 'UPD_ORG_CODE'>
+            <#if column.remark != ''>
+            /** ${column.remark} */
+            @ApiModelProperty(value = "${column.remark}", dataType = " ${column.columnType}", example = "")
+            </#if>
+            <#if column.columnKey = 'PRI'>
+            @TableId(type = IdType.ASSIGN_ID)
+            </#if>
+            @TableField("${column.columnName}")
+            //@Column(name = "${column.columnName}"<#if column.columnKey = 'UNI'>,unique = true</#if><#if column.istNotNull && column.columnKey != 'PRI'>,nullable = false</#if>)
+            <#if column.istNotNull && column.columnKey != 'PRI'>
+                <#if column.columnType = 'String'>
+            @NotBlank
+                <#else>
+            @NotNull
+                </#if>
+            </#if>
+            <#if column.dateAnnotation??>
+            <#if column.dateAnnotation = 'CreationTimestamp'>
+            @CreationTimestamp
+            <#else>
+            @UpdateTimestamp
+            </#if>
+            </#if>
+            private ${column.columnType} ${column.changeColumnName};
         </#if>
-    </#if>
-    <#if column.dateAnnotation??>
-    <#if column.dateAnnotation = 'CreationTimestamp'>
-    @CreationTimestamp
-    <#else>
-    @UpdateTimestamp
-    </#if>
-    </#if>
-    private ${column.columnType} ${column.changeColumnName};
     </#list>
 </#if>
 
@@ -78,7 +79,11 @@ private static final long serialVersionUID = 1L;
     public String toString() {
         return new ToStringBuilder(this)
                 <#list columns as column>
+                     <#if column.columnName?upper_case != 'CRT_USER_CODE' && column.columnName?upper_case != 'CRT_DATE'  && column.columnName?upper_case != 'CRT_ORG_CODE' &&  column.columnName?upper_case != 'UPD_USER_CODE' && column.columnName?upper_case != 'UPD_DATE'  && column.columnName?upper_case != 'UPD_ORG_CODE'>
                     .append("${column.changeColumnName}", ${column.changeColumnName})
+                    <#else>
+                        .append("${column.changeColumnName}", super.${column.changeColumnName})
+                    </#if>
                 </#list>
                 .toString();
     }

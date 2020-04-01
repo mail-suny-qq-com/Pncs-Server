@@ -1,6 +1,7 @@
 package com.pactera.core.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.pactera.core.util.SystemUtil;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,18 +23,18 @@ public class SshsMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         LOGGER.debug("start insert fill ....");
-        this.setInsertFieldValByName("crtUserCode", "admin", metaObject);//版本号3.0.6以及之前的版本
+        this.setFieldValByName("crtUserCode", SystemUtil.getCurrentUser().getUserCode(), metaObject);//版本号3.0.6以及之前的版本
         this.setFieldValByName("crtDate", new Date(), metaObject);//版本号3.0.6以及之前的版本
-        this.setFieldValByName("crtOrg", "001", metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
-        this.setFieldValByName("crtUser", "admin", metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
+        this.setFieldValByName("crtOrgCode", SystemUtil.getCurrentUser().getOrgCode(), metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
+        //this.setFieldValByName("crtUser", SystemUtil.getCurrentUser().getUserCode(), metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         LOGGER.debug("start update fill ....");
-        this.setUpdateFieldValByName("updUserCode", "admin", metaObject);//版本号3.0.6以及之前的版本
+        this.setFieldValByName("updUserCode", SystemUtil.getCurrentUser().getUserCode(), metaObject);//版本号3.0.6以及之前的版本
         this.setFieldValByName("updDate", new Date(), metaObject);//版本号3.0.6以及之前的版本
-        this.setFieldValByName("updOrg", "001", metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
+        this.setFieldValByName("updOrgCode", SystemUtil.getCurrentUser().getOrgCode(), metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
         //this.setUpdateFieldValByName("operator", "Tom", metaObject);//@since 快照：3.0.7.2-SNAPSHOT， @since 正式版暂未发布3.0.7
     }
 }

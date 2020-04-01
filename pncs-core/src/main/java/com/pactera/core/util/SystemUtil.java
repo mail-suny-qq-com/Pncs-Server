@@ -1,9 +1,13 @@
 package com.pactera.core.util;
 
-import com.pactera.core.constant.Global;
+import cn.hutool.json.JSONObject;
 import com.pactera.core.customise.mapper.CommonMapper;
 import com.pactera.core.base.model.GlobalUser;
+import com.pactera.core.exception.BusinessException;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -33,8 +37,78 @@ public class SystemUtil {
      * @return
      */
     public static GlobalUser getCurrentUser() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        return (GlobalUser) request.getSession().getAttribute(Global.USER);
+        GlobalUser gu = new GlobalUser();
+        //SecurityUtils
+        //HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        //return (GlobalUser) request.getSession().getAttribute(Global.USER);
+        gu.setUserCode(getUsername());
+        gu.setUserName(getNickName());
+        gu.setOrgCode(getDeptId());
+        return gu;
+    }
+
+    public static UserDetails getUserDetails() {
+        UserDetails userDetails;
+        try {
+            userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "登录状态过期");
+        }
+        return userDetails;
+    }
+
+    /**
+     * 获取系统用户名称
+     *
+     * @return 系统用户名称
+     */
+    public static String getUsername() {
+        Object obj = getUserDetails();
+        return new JSONObject(obj).get("username", String.class);
+    }
+
+    /**
+     * 获取系统用户中文名称
+     *
+     * @return 系统用户中文名称
+     */
+    public static String getNickName() {
+        Object obj = getUserDetails();
+        JSONObject json = new JSONObject(obj);
+        return json.get("nickName", String.class);
+    }
+
+    /**
+     * 获取系统用户id
+     *
+     * @return 系统用户id
+     */
+    public static String getUserId() {
+        Object obj = getUserDetails();
+        JSONObject json = new JSONObject(obj);
+        return json.get("id", String.class);
+    }
+
+    /**
+     * 获取系统用户归属机构ID
+     *
+     * @return 用户归属机构ID
+     */
+    public static String getDeptId() {
+        Object obj = getUserDetails();
+        JSONObject json = new JSONObject(obj);
+        return json.get("deptId", String.class);
+    }
+
+    /**
+     * 获取用户角色ID集合
+     *
+     * @return 用户角色ID集合
+     */
+    public static List<String> roleIds() {
+        Object obj = getUserDetails();
+        JSONObject json = new JSONObject(obj);
+        return json.get("roleIds", List.class);
     }
 
     /**
