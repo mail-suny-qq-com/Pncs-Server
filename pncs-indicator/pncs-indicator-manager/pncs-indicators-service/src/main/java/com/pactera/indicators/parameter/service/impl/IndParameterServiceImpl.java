@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
 * 指标参数服务实现
 * @author Suny
-* @date 2020-03-27
+* @date 2020-04-01
 */
 @Service
 public class IndParameterServiceImpl extends BaseServiceImpl<IndParameterMapper, IndParameter> implements IIndParameterService {

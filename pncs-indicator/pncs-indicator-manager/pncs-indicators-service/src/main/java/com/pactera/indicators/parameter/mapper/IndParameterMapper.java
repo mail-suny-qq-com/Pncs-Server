@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
 * 指标参数Mapper
 * @author Suny
-* @date 2020-03-27
+* @date 2020-04-01
 */
 @Mapper
 public interface IndParameterMapper extends BaseMapper<IndParameter> {

@@ -70,7 +70,7 @@ private static final long serialVersionUID = 1L;
     @UpdateTimestamp
     </#if>
     </#if>
-    private ${column.columnType} <#if column.columnKey = 'PRI'> id;<#else> ${column.changeColumnName};</#if>
+    private ${column.columnType} ${column.changeColumnName};
     </#list>
 </#if>
 
@@ -78,7 +78,7 @@ private static final long serialVersionUID = 1L;
     public String toString() {
         return new ToStringBuilder(this)
                 <#list columns as column>
-                    .append("${column.changeColumnName}", <#if column.columnKey = 'PRI'> id;<#else> ${column.changeColumnName};</#if>
+                    .append("${column.changeColumnName}", ${column.changeColumnName});
                 </#list>
                 .toString();
     }

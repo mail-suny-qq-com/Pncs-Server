@@ -6,7 +6,7 @@ import com.pactera.indicators.parameter.model.IndParameter;
 /**
 * 指标参数服务接口
 * @author Suny
-* @date 2020-03-27
+* @date 2020-04-01
 */
 public interface IIndParameterService extends IBaseService<IndParameter>{
 
