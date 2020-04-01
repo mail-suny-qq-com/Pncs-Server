@@ -18,7 +18,7 @@ import java.util.Date;
 /**
 * 指标参数实体类
 * @author Suny
-* @date 2020-03-27
+* @date 2020-04-01
 */
 @Getter
 @Setter
@@ -35,8 +35,8 @@ private static final long serialVersionUID = 1L;
     /** 参数ID */
     @ApiModelProperty(value = "参数ID", dataType = " String", example = "")
     @TableId(type = IdType.ASSIGN_ID)
-    @TableField("PARM_ID")
-    //@Column(name = "PARM_ID")
+    @TableField("ID")
+    //@Column(name = "ID")
     private String id;
 
     /** 参数类型 */
@@ -74,6 +74,12 @@ private static final long serialVersionUID = 1L;
     @TableField("PARM_DESC")
     //@Column(name = "PARM_DESC")
     private String parmDesc;
+
+    /** 状态(1-启用，0-停用) */
+    @ApiModelProperty(value = "状态(1-启用，0-停用)", dataType = " String", example = "")
+    @TableField("STATUS")
+    //@Column(name = "STATUS")
+    private String status;
 
     /** 创建人 */
     @ApiModelProperty(value = "创建人", dataType = " String", example = "")
@@ -121,6 +127,7 @@ private static final long serialVersionUID = 1L;
                     .append("parmType", parmType)
                     .append("parmValue", parmValue)
                     .append("parmDesc", parmDesc)
+                    .append("status", status)
                     .append("crtUserCode", crtUserCode)
                     .append("crtOrgCode", crtOrgCode)
                     .append("crtDate", crtDate)

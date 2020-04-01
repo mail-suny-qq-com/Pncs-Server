@@ -9,13 +9,14 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-				PARM_ID,
+				ID,
 				CATEGORY_ID,
 				PARM_CODE,
 				PARM_NAME,
 				PARM_TYPE,
 				PARM_VALUE,
 				PARM_DESC,
+				STATUS,
 				CRT_USER_CODE,
 				CRT_ORG_CODE,
 				CRT_DATE,
@@ -26,13 +27,14 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-				#{parmId},
+				#{id},
 				#{categoryId},
 				#{parmCode},
 				#{parmName},
 				#{parmType},
 				#{parmValue},
 				#{parmDesc},
+				#{status},
 				#{crtUserCode},
 				#{crtOrgCode},
 				#{crtDate},
@@ -49,13 +51,13 @@
         FROM
         <include refid="tableName"></include>
         WHERE 1=1
-			<if test="variable.parmId != null and variable.parmId != ''">
-                AND PARM_ID
+			<if test="variable.id != null and variable.id != ''">
+                AND ID
                 <choose>
-                    <when test="variable.operators.parmId != null and variable.operators.parmId != '' ">${variable.operators.parmId}</when>
+                    <when test="variable.operators.id != null and variable.operators.id != '' ">${variable.operators.id}</when>
                     <otherwise> = </otherwise>
                 </choose>
-				#{variable.parmId}
+				#{variable.id}
             </if>
 			<if test="variable.categoryId != null and variable.categoryId != ''">
                 AND CATEGORY_ID
@@ -104,6 +106,14 @@
                     <otherwise> = </otherwise>
                 </choose>
 				#{variable.parmDesc}
+            </if>
+			<if test="variable.status != null and variable.status != ''">
+                AND STATUS
+                <choose>
+                    <when test="variable.operators.status != null and variable.operators.status != '' ">${variable.operators.status}</when>
+                    <otherwise> = </otherwise>
+                </choose>
+				#{variable.status}
             </if>
 			<if test="variable.crtUserCode != null and variable.crtUserCode != ''">
                 AND CRT_USER_CODE

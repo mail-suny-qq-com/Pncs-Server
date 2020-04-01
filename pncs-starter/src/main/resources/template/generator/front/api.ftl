@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const url = 'api/v1/${apiAlias}/${changeClassName}s'
+const url = 'v1/${apiAlias}/${changeClassName}s'
 
 export function add(data) {
   return request({
@@ -26,4 +26,4 @@ export function edit(data) {
   })
 }
 
-export default { add, edit, del }
+export default { url ,method: { add, edit, del } }
