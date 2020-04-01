@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@Table(name = "email_config")
+@Table(name = "sys_email_config")
 public class EmailConfig implements Serializable {
 
     @Id

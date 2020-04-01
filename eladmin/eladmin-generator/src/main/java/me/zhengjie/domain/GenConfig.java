@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "gen_config")
+@Table(name = "sys_gen_config")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class GenConfig {
 
