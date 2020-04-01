@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "column_config")
+@Table(name = "gen_column_config")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class ColumnInfo {
 
