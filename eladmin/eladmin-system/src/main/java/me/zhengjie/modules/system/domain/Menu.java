@@ -1,6 +1,5 @@
 package me.zhengjie.modules.system.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * @author Zheng Jie
@@ -21,7 +19,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "menu")
+@Table(name = "sys_menu")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Menu implements Serializable {
 

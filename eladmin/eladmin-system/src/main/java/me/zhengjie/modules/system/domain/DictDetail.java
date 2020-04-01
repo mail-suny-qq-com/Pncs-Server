@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="dict_detail")
+@Table(name="sys_dict_detail")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DictDetail implements Serializable {
 

@@ -20,7 +20,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="job")
+@Table(name="sys_job")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Job implements Serializable {
 

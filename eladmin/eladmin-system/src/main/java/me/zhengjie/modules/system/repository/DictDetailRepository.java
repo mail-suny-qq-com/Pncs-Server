@@ -14,6 +14,6 @@ public interface DictDetailRepository extends JpaRepository<DictDetail, String>,
      * 查询重置密码
      * @param
      */
-    @Query(value = "select value from dict_detail where dict_id in (select id from dict where name='password')",nativeQuery = true)
+    @Query(value = "select value from sys_dict_detail where dict_id in (select id from sys_dict where name='password')",nativeQuery = true)
     String dictPassword();
 }

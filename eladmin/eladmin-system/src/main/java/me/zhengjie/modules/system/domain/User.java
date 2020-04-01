@@ -23,7 +23,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="el_user")
+@Table(name="sys_user")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class User implements Serializable {
 
@@ -65,7 +65,7 @@ public class User implements Serializable {
     private Date lastPasswordResetTime;
 
     @ManyToMany
-    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
+    @JoinTable(name = "sys_users_roles", joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
     private Set<Role> roles;
 
     //当前版本弃用 job

@@ -20,7 +20,7 @@ import java.util.Set;
  * @date 2018-11-22
  */
 @Entity
-@Table(name = "role")
+@Table(name = "sys_role")
 @Getter
 @Setter
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
@@ -59,7 +59,7 @@ public class Role implements Serializable {
 //    private Set<Menu> menus;
 
     @ManyToMany
-    @JoinTable(name = "roles_depts", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "id")})
+    @JoinTable(name = "sys_roles_depts", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "id")})
     private Set<Dept> depts;
 
     @Column(name = "create_time")

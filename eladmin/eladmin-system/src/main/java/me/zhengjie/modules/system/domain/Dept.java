@@ -21,7 +21,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="dept")
+@Table(name="sys_dept")
 //@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Dept implements Serializable {
 

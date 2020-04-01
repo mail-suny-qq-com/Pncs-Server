@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Data
-@Table(name = "visits")
+@Table(name = "sys_visits")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Visits  implements Serializable {
 

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Data
-@Table(name = "log")
+@Table(name = "sys_log")
 @NoArgsConstructor
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Log  implements Serializable {

@@ -20,7 +20,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user_avatar")
+@Table(name = "sys_user_avatar")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class UserAvatar implements Serializable {
 

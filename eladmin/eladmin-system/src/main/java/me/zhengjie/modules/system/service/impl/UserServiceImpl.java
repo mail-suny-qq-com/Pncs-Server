@@ -232,9 +232,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object queryUserList(UserQueryCriteria criteria, Pageable pageable) {
         StringBuilder countSqlSb = new StringBuilder();
-        countSqlSb.append(" select count(1) from el_user u where 1=1 ");
+        countSqlSb.append(" select count(1) from sys_user u where 1=1 ");
         StringBuilder selectSqlSb = new StringBuilder();
-        selectSqlSb.append(" select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from el_user u left join dept d on u.dept_id=d.id where 1=1 ");
+        selectSqlSb.append(" select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from sys_user u left join sys_dept d on u.dept_id=d.id where 1=1 ");
         StringBuilder whereSql = new StringBuilder();
         Map<String,Object> params = new HashMap<>();
         if(StrUtil.isNotEmpty(criteria.getDeptId())){

@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name="dict")
+@Table(name="sys_dict")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Dict implements Serializable {
 

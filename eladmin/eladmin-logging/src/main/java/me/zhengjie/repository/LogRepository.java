@@ -23,14 +23,14 @@ public interface LogRepository extends JpaRepository<Log,String>, JpaSpecificati
      * @param date2 entTime
      * @return IP数目
      */
-    @Query(value = "select count(*) FROM (select request_ip FROM log t where  create_time  between ?1 and ?2 GROUP BY request_ip) tt",nativeQuery = true)
+    @Query(value = "select count(*) FROM (select request_ip FROM sys_log t where  create_time  between ?1 and ?2 GROUP BY request_ip) tt",nativeQuery = true)
     Long findIp(LocalDate date1, LocalDate date2);
 
     /**
      * 根据日志类型删除信息
      * @param logType 日志类型
      */
-    @Query(nativeQuery = true,value = "delete from log where log_type = ?1")
+    @Query(nativeQuery = true,value = "delete from sys_log where log_type = ?1")
     @Modifying
     void deleteByLogType(String logType);
 }

@@ -34,7 +34,7 @@ public interface UserRepository extends JpaRepository<User,String>, JpaSpecifica
      * @param lastPasswordResetTime /
      */
     @Modifying
-    @Query(value = "update el_user set password = ?2 , last_password_reset_time = ?3 where username = ?1",nativeQuery = true)
+    @Query(value = "update sys_user set password = ?2 , last_password_reset_time = ?3 where username = ?1",nativeQuery = true)
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
@@ -43,6 +43,6 @@ public interface UserRepository extends JpaRepository<User,String>, JpaSpecifica
      * @param email 邮箱
      */
     @Modifying
-    @Query(value = "update el_user set email = ?2 where username = ?1",nativeQuery = true)
+    @Query(value = "update sys_user set email = ?2 where username = ?1",nativeQuery = true)
     void updateEmail(String username, String email);
 }

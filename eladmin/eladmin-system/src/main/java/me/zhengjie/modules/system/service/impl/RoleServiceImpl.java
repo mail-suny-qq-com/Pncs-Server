@@ -14,6 +14,7 @@ import me.zhengjie.utils.*;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,9 +23,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -172,7 +175,7 @@ public class RoleServiceImpl implements RoleService {
         Set<String> permissions = new HashSet<>();
         //查询机构权限
         String deptId = user.getDept().getId();
-        String sql = "select m.permission from object_menus o left join menu m on o.menu_id=m.id where o.object_type=:type and o.object_id=:id";
+        String sql = "select m.permission from sys_object_menus o left join sys_menu m on o.menu_id=m.id where o.object_type=:type and o.object_id=:id";
         List<String> deptPermissions = entityManager.createNativeQuery(sql).setParameter("type","dept").setParameter("id", deptId).getResultList();
         for (String str:deptPermissions){
             if(StringUtils.isNotBlank(str)){
@@ -217,7 +220,7 @@ public class RoleServiceImpl implements RoleService {
         Set<String> permissions = new HashSet<>();
         //查询机构权限
         String deptId = user.getDept().getId();
-        String sql = "select m.permission from object_menus o left join menu m on o.menu_id=m.id where o.object_type=:type and o.object_id=:id";
+        String sql = "select m.permission from sys_object_menus o left join sys_menu m on o.menu_id=m.id where o.object_type=:type and o.object_id=:id";
         List<String> deptPermissions = entityManager.createNativeQuery(sql).setParameter("type","dept").setParameter("id", deptId).getResultList();
         for (String str:deptPermissions){
             if(StringUtils.isNotBlank(str)){
@@ -288,15 +291,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List queryUserByRole(String roleId) {
-        String sql = "select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from users_roles ur left join el_user u on ur.user_id=u.id left join dept d on u.dept_id=d.id where role_id=:roleId";
+        String sql = "select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from sys_users_roles ur left join sys_user u on ur.user_id=u.id left join sys_dept d on u.dept_id=d.id where role_id=:roleId";
         return entityManager.createNativeQuery(sql).setParameter("roleId",roleId).unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).getResultList();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveUserRoles(String roleId, String[] userIds) {
-        String sql = "insert into users_roles values(?,?)";
-        entityManager.createNativeQuery("delete from users_roles where role_id=:roleId").setParameter("roleId",roleId).executeUpdate();
+    public void saveUserRoles(String roleId,String[] userIds) {
+        String sql = "insert into sys_users_roles values(?,?)";
+        entityManager.createNativeQuery("delete from sys_users_roles where role_id=:roleId").setParameter("roleId",roleId).executeUpdate();
         for (String userId:userIds){
             entityManager.createNativeQuery(sql).setParameter(1,userId).setParameter(2,roleId).executeUpdate();
         }

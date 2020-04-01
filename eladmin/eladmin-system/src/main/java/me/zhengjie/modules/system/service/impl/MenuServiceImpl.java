@@ -291,7 +291,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<Menu> findObjectMenus(String type, String id) {
-        String sql = "select * from menu where type!='2' and id in (select menu_id from object_menus where object_type=:type and object_id=:id) ";
+        String sql = "select * from sys_menu where type!='2' and id in (select menu_id from sys_object_menus where object_type=:type and object_id=:id) ";
         Query query=entityManager.createNativeQuery(sql,Menu.class);
         query.setParameter("type",type).setParameter("id",id);
         return query.getResultList();

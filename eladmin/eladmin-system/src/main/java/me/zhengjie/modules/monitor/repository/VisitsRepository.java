@@ -29,6 +29,6 @@ public interface VisitsRepository extends JpaRepository<Visits,String> {
      * @param date2 日期2
      * @return List
      */
-    @Query(value = "select * FROM visits where create_time between ?1 and ?2 order by create_time",nativeQuery = true)
+    @Query(value = "select * FROM sys_visits where create_time between ?1 and ?2 order by create_time",nativeQuery = true)
     List<Visits> findAllVisits(LocalDate date1, LocalDate date2);
 }

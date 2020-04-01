@@ -22,7 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +53,7 @@ public class RoleController {
     @ApiOperation("获取单个role")
     @GetMapping(value = "/{id}")
     @PreAuthorize("@el.check('roles:list')")
-    public ResponseEntity<Object> getRoles(@PathVariable String id){
+    public ResponseEntity<Object> getRoles(@PathVariable String id) {
         return new ResponseEntity<>(roleService.findById(id), HttpStatus.OK);
     }
 
@@ -66,57 +68,57 @@ public class RoleController {
     @ApiOperation("返回全部的角色")
     @GetMapping(value = "/all")
     @PreAuthorize("@el.check('roles:list','user:add','user:edit')")
-    public ResponseEntity<Object> getAll(@PageableDefault(value = 2000, sort = {"level"}, direction = Sort.Direction.ASC) Pageable pageable){
-        return new ResponseEntity<>(roleService.queryAll(pageable),HttpStatus.OK);
+    public ResponseEntity<Object> getAll(@PageableDefault(value = 2000, sort = {"level"}, direction = Sort.Direction.ASC) Pageable pageable) {
+        return new ResponseEntity<>(roleService.queryAll(pageable), HttpStatus.OK);
     }
 
     @Log("查询角色")
     @ApiOperation("查询角色")
     @GetMapping
     @PreAuthorize("@el.check('roles:list','auth:list')")
-    public ResponseEntity<Object> getRoles(RoleQueryCriteria criteria, Pageable pageable){
-        return new ResponseEntity<>(roleService.queryAll(criteria,pageable),HttpStatus.OK);
+    public ResponseEntity<Object> getRoles(RoleQueryCriteria criteria, Pageable pageable) {
+        return new ResponseEntity<>(roleService.queryAll(criteria, pageable), HttpStatus.OK);
     }
 
     @Log("查询角色授权的用户")
     @ApiOperation("查询角色授权的用户")
     @GetMapping(value = "queryUserByRole")
     @PreAuthorize("@el.check('roles:list')")
-    public ResponseEntity<Object> queryUserByRole(String roleId){
-        return new ResponseEntity<>(roleService.queryUserByRole(roleId),HttpStatus.OK);
+    public ResponseEntity<Object> queryUserByRole(String roleId) {
+        return new ResponseEntity<>(roleService.queryUserByRole(roleId), HttpStatus.OK);
     }
 
     @Log("保存角色授权用户")
     @ApiOperation("保存角色授权用户")
     @PostMapping(value = "saveUserRoles")
-    public ResponseEntity<Object> saveUserRoles(String roleId,String[] userIds){
-        roleService.saveUserRoles(roleId,userIds);
+    public ResponseEntity<Object> saveUserRoles(@NotEmpty(message = "角色ID不能为空") String roleId, @NotEmpty(message = "用户ID不能为空") String[] userIds) {
+        roleService.saveUserRoles(roleId, userIds);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @ApiOperation("获取用户级别")
     @GetMapping(value = "/level")
-    public ResponseEntity<Object> getLevel(){
-        return new ResponseEntity<>(Dict.create().set("level", getLevels(null)),HttpStatus.OK);
+    public ResponseEntity<Object> getLevel() {
+        return new ResponseEntity<>(Dict.create().set("level", getLevels(null)), HttpStatus.OK);
     }
 
     @Log("新增角色")
     @ApiOperation("新增角色")
     @PostMapping
     @PreAuthorize("@el.check('roles:add')")
-    public ResponseEntity<Object> create(@Validated @RequestBody Role resources){
+    public ResponseEntity<Object> create(@Validated @RequestBody Role resources) {
         if (resources.getId() != null) {
-            throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
+            throw new BadRequestException("A new " + ENTITY_NAME + " cannot already have an ID");
         }
 //        getLevels(resources.getLevel());
-        return new ResponseEntity<>(roleService.create(resources),HttpStatus.CREATED);
+        return new ResponseEntity<>(roleService.create(resources), HttpStatus.CREATED);
     }
 
     @Log("修改角色")
     @ApiOperation("修改角色")
     @PutMapping
     @PreAuthorize("@el.check('roles:edit')")
-    public ResponseEntity<Object> update(@Validated(Role.Update.class) @RequestBody Role resources){
+    public ResponseEntity<Object> update(@Validated(Role.Update.class) @RequestBody Role resources) {
 //        getLevels(resources.getLevel());
         roleService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -126,10 +128,10 @@ public class RoleController {
     @ApiOperation("修改角色菜单")
     @PutMapping(value = "/menu")
     @PreAuthorize("@el.check('roles:edit')")
-    public ResponseEntity<Object> updateMenu(@RequestBody Role resources){
+    public ResponseEntity<Object> updateMenu(@RequestBody Role resources) {
         RoleDto role = roleService.findById(resources.getId());
 //        getLevels(role.getLevel());
-        roleService.updateMenu(resources,role);
+        roleService.updateMenu(resources, role);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -137,14 +139,14 @@ public class RoleController {
     @ApiOperation("删除角色")
     @DeleteMapping
     @PreAuthorize("@el.check('roles:del')")
-    public ResponseEntity<Object> delete(@RequestBody Set<String> ids){
+    public ResponseEntity<Object> delete(@RequestBody Set<String> ids) {
         /*for (String id : ids) {
             RoleDto role = roleService.findById(id);
             getLevels(role.getLevel());
         }*/
         try {
             roleService.delete(ids);
-        } catch (Throwable e){
+        } catch (Throwable e) {
             ThrowableUtil.throwForeignKeyException(e, "所选角色存在用户关联，请取消关联后再试");
         }
         return new ResponseEntity<>(HttpStatus.OK);
@@ -152,14 +154,15 @@ public class RoleController {
 
     /**
      * 获取用户的角色级别
+     *
      * @return /
      */
-    private int getLevels(Integer level){
+    private int getLevels(Integer level) {
         UserDto user = userService.findByName(SecurityUtils.getUsername());
         List<Integer> levels = roleService.findByUsersId(user.getId()).stream().map(RoleSmallDto::getLevel).collect(Collectors.toList());
         int min = Collections.min(levels);
-        if(level != null){
-            if(level < min){
+        if (level != null) {
+            if (level < min) {
                 throw new BadRequestException("权限不足，你的角色级别：" + min + "，低于操作的角色级别：" + level);
             }
         }
