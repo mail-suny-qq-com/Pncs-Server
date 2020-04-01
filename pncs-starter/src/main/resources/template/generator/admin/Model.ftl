@@ -78,7 +78,7 @@ private static final long serialVersionUID = 1L;
     public String toString() {
         return new ToStringBuilder(this)
                 <#list columns as column>
-                    .append("${column.changeColumnName}", ${column.changeColumnName});
+                    .append("${column.changeColumnName}", ${column.changeColumnName})
                 </#list>
                 .toString();
     }
