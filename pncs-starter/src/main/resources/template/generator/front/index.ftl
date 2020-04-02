@@ -122,7 +122,7 @@ import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({ title: '${remark}', url: crud${className}.url, sort: '${pkChangeColName},desc', crudMethod: { ...crud${className}.method }})
+const defaultCrud = CRUD({ title: '${remark}', url: crud${className}.url, sort: '${pkChangeColName},desc', crudMethod: { ...crud${className}.crud }})
 const defaultForm = { <#if columns??><#list columns as column>${column.changeColumnName}: null<#if column_has_next>, </#if></#list></#if> }
 export default {
   name: '${className}',

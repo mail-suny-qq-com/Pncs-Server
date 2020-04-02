@@ -29,12 +29,6 @@ public class SysLog implements Serializable {
     private String logId;
 
     /**
-     * 法人行社
-     */
-    @TableField(value = "LEGAL_ORG")
-    private String legalOrg;
-
-    /**
      * 创建人
      */
     @TableField(value = "CRT_USER_CODE")
@@ -129,14 +123,6 @@ public class SysLog implements Serializable {
 
     public void setLogId(String logId) {
         this.logId = logId;
-    }
-
-    public String getLegalOrg() {
-        return this.legalOrg;
-    }
-
-    public void setLegalOrg(String legalOrg) {
-        this.legalOrg = legalOrg;
     }
 
     public String getCrtUserCode() {

@@ -19,8 +19,7 @@
 				CRT_DATE,
 				UPD_USER_CODE,
 				UPD_ORG_CODE,
-				UPD_DATE,
-				LEGAL_ORG
+				UPD_DATE
 	</sql>
 	
 	<!-- 字段值 -->
@@ -35,8 +34,7 @@
 				#{crtDate},
 				#{updUserCode},
 				#{updOrgCode},
-				#{updDate},
-				#{legalOrg}
+				#{updDate}
 	</sql>
 
     <!-- 分页查询指标分类-查询列信息 -->
@@ -134,14 +132,6 @@
                     <otherwise> = </otherwise>
                 </choose>
 				#{variable.updDate}
-            </if>
-			<if test="variable.legalOrg != null and variable.legalOrg != ''">
-                AND LEGAL_ORG
-                <choose>
-                    <when test="variable.operators.legalOrg != null and variable.operators.legalOrg != '' ">${variable.operators.legalOrg}</when>
-                    <otherwise> = </otherwise>
-                </choose>
-				#{variable.legalOrg}
             </if>
     </select>
 </mapper>
