@@ -26,4 +26,4 @@ export function edit(data) {
   })
 }
 
-export default { url ,method: { add, edit, del } }
+export default { url ,crud: { add, edit, del } }
