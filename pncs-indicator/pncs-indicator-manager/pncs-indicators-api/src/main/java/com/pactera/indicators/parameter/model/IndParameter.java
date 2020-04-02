@@ -81,41 +81,6 @@ private static final long serialVersionUID = 1L;
     //@Column(name = "STATUS")
     private String status;
 
-    /** 创建人 */
-    @ApiModelProperty(value = "创建人", dataType = " String", example = "")
-    @TableField("CRT_USER_CODE")
-    //@Column(name = "CRT_USER_CODE")
-    private String crtUserCode;
-
-    /** 创建机构 */
-    @ApiModelProperty(value = "创建机构", dataType = " String", example = "")
-    @TableField("CRT_ORG_CODE")
-    //@Column(name = "CRT_ORG_CODE")
-    private String crtOrgCode;
-
-    /** 创建日期 */
-    @ApiModelProperty(value = "创建日期", dataType = " Date", example = "")
-    @TableField("CRT_DATE")
-    //@Column(name = "CRT_DATE")
-    private Date crtDate;
-
-    /** 修改人 */
-    @ApiModelProperty(value = "修改人", dataType = " String", example = "")
-    @TableField("UPD_USER_CODE")
-    //@Column(name = "UPD_USER_CODE")
-    private String updUserCode;
-
-    /** 修改机构 */
-    @ApiModelProperty(value = "修改机构", dataType = " String", example = "")
-    @TableField("UPD_ORG_CODE")
-    //@Column(name = "UPD_ORG_CODE")
-    private String updOrgCode;
-
-    /** 修改日期 */
-    @ApiModelProperty(value = "修改日期", dataType = " Date", example = "")
-    @TableField("UPD_DATE")
-    //@Column(name = "UPD_DATE")
-    private Date updDate;
 
     @Override
     public String toString() {
@@ -128,12 +93,12 @@ private static final long serialVersionUID = 1L;
                     .append("parmValue", parmValue)
                     .append("parmDesc", parmDesc)
                     .append("status", status)
-                    .append("crtUserCode", crtUserCode)
-                    .append("crtOrgCode", crtOrgCode)
-                    .append("crtDate", crtDate)
-                    .append("updUserCode", updUserCode)
-                    .append("updOrgCode", updOrgCode)
-                    .append("updDate", updDate)
+                    .append("crtUserCode", super.crtUserCode)
+                    .append("crtOrgCode", super.crtOrgCode)
+                    .append("crtDate", super.crtDate)
+                    .append("updUserCode", super.updUserCode)
+                    .append("updOrgCode", super.updOrgCode)
+                    .append("updDate", super.updDate)
                 .toString();
     }
 }
