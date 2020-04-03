@@ -71,17 +71,17 @@
                 AND PARM_CODE
                 <choose>
                     <when test="variable.operators.parmCode != null and variable.operators.parmCode != '' ">${variable.operators.parmCode}</when>
-                    <otherwise> = </otherwise>
+                    <otherwise> like </otherwise>
                 </choose>
-				#{variable.parmCode}
+                CONCAT('%',#{variable.parmCode},'%')
             </if>
 			<if test="variable.parmName != null and variable.parmName != ''">
                 AND PARM_NAME
                 <choose>
                     <when test="variable.operators.parmName != null and variable.operators.parmName != '' ">${variable.operators.parmName}</when>
-                    <otherwise> = </otherwise>
+                    <otherwise> like </otherwise>
                 </choose>
-				#{variable.parmName}
+                CONCAT('%',#{variable.parmName},'%')
             </if>
 			<if test="variable.parmType != null and variable.parmType != ''">
                 AND PARM_TYPE
