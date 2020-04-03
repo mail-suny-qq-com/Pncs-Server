@@ -57,9 +57,9 @@
                 AND DATASOURCE_NAME
                 <choose>
                     <when test="variable.operators.datasourceName != null and variable.operators.datasourceName != '' ">${variable.operators.datasourceName}</when>
-                    <otherwise> = </otherwise>
+                    <otherwise> like </otherwise>
                 </choose>
-				#{variable.datasourceName}
+                CONCAT('%',#{variable.datasourceName},'%')
             </if>
 			<if test="variable.datasourceType != null and variable.datasourceType != ''">
                 AND DATASOURCE_TYPE
