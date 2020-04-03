@@ -64,7 +64,12 @@
 				#{updOrgCode},
 				#{updDate}
 	</sql>
-
+    <!--查询指标编号最大值（生成新的指标编号）-->
+    <select id="maxCode" parameterType="String"
+            resultType="String">
+        select max(ie_code) from   <include refid="tableName"></include>
+        where ie_type=#{ieType}
+    </select>
     <!-- 分页查询指标基本信息-查询列信息 -->
     <select id="findForList" parameterType="Map"
             resultType="com.pactera.indicators.indicator.model.IndIndicatorInfo">
