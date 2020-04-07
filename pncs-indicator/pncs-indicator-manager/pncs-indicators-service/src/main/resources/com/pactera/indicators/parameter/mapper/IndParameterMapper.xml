@@ -42,7 +42,11 @@
 				#{updOrgCode},
 				#{updDate}
 	</sql>
-
+    <!--查询参数编号最大值（生成新的参数编号）-->
+    <select id="maxParmCode" parameterType="String"
+            resultType="String">
+        select max(PARM_CODE) from   <include refid="tableName"></include>
+    </select>
     <!-- 分页查询指标参数-查询列信息 -->
     <select id="findForList" parameterType="Map"
             resultType="com.pactera.indicators.parameter.model.IndParameter">
