@@ -210,10 +210,10 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBaseService
         if (limit != null && limit > 0) {
             pageSize = Long.min(1000, limit);
         }
-        long current = 1;
-        if (offset != null && offset > 0) {
+        long current = offset+1;
+        /*if (offset != null && offset > current) {
             current = offset;
-        }
+        }*/
         IPage<T> page = new Page<>(current, pageSize);
         return Message.success(mapper.findForList(page, parameter));
     }
