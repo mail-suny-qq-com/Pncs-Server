@@ -67,7 +67,13 @@ public class GeneratorServiceImpl implements GeneratorService {
             sql = oraSql;
         }
         Query query = em.createNativeQuery(sql);
-        return query.getResultList();
+        List result = query.getResultList();
+        List<TableInfo> tableInfos = new ArrayList<>();
+        for (Object obj : result) {
+            Object[] arr = (Object[]) obj;
+            tableInfos.add(new TableInfo(arr[0], arr[1], arr[2], arr[3], ObjectUtil.isNotEmpty(arr[4]) ? arr[4] : "-"));
+        }
+        return tableInfos;
     }
 
     @Override
