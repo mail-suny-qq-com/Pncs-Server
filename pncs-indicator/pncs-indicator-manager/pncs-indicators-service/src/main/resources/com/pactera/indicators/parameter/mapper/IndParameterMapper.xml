@@ -71,6 +71,12 @@
                 </choose>
 				#{variable.categoryId}
             </if>
+            <if test="variable.categoryIds != null and variable.categoryIds.size > 0">
+                AND CATEGORY_ID in
+                <foreach item="categoryId" collection="variable.categoryIds" separator="," open="(" close=")" index="">
+                    #{categoryId}
+                </foreach>
+            </if>
 			<if test="variable.parmCode != null and variable.parmCode != ''">
                 AND PARM_CODE
                 <choose>

@@ -14,6 +14,7 @@ import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
 * 指标参数实体类
@@ -81,7 +82,10 @@ private static final long serialVersionUID = 1L;
     //@Column(name = "STATUS")
     private String status;
 
-
+    @ApiModelProperty(value = "分类查询条件", dataType = "List", example = "")
+    @TableField(exist = false)
+    //@Column(name = "")
+    private List<String> categoryIds;
     @Override
     public String toString() {
         return new ToStringBuilder(this)
