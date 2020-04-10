@@ -59,21 +59,4 @@ public class IndIndicatorInfoServiceImpl extends BaseServiceImpl<IndIndicatorInf
         model.setStatus("0");
         return super.save(model);
     }
-
-    /**
-     * 分页查询方法
-     *
-     * @param limit     分页信息
-     * @param offset    页码
-     * @param parameter 查询条件
-     * @return 分页查询结果
-     */
-    @Override
-    public Message<IPage<IndIndicatorInfo>> findForPageList(Integer limit, Integer offset, IndIndicatorInfo parameter) {
-        if (StringUtils.isNotBlank(parameter.getCategoryId())) {
-            parameter.setCategoryIds(indCategoryService.childrenIds(parameter.getIeType(), parameter.getCategoryId()));
-            parameter.setCategoryId(null);
-        }
-        return super.findForPageList(limit, offset, parameter);
-    }
 }

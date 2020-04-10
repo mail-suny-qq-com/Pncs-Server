@@ -1,6 +1,7 @@
 package com.pactera.indicators.category.service.impl;
 
 import com.pactera.core.base.service.impl.BaseServiceImpl;
+import com.pactera.core.message.Message;
 import com.pactera.core.wrapper.QueryWrapper;
 import com.pactera.indicators.category.mapper.IndCategoryMapper;
 import com.pactera.indicators.category.model.IndCategory;
@@ -22,9 +23,15 @@ import java.util.*;
 @Service
 public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, IndCategory> implements IIndCategoryService {
     private static final Logger logger = LoggerFactory.getLogger(IndCategoryServiceImpl.class);
-    private static Map<String, List<String>> CHILDRENIDS = new HashMap<>();
+    private static Map<String, List<String>> CHILDREN_IDS = new HashMap<>();
     @Resource
     private IndCategoryMapper mapper;
+
+    @Override
+    public Message<IndCategory> save(IndCategory model) {
+        CHILDREN_IDS.clear();
+        return super.save(model);
+    }
 
     @Override
     public List<IndCategory> tree(String type, String parentId) {
@@ -34,6 +41,7 @@ public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, I
         List<IndCategory> root = mapper.selectList(wrapper);
         if (root != null && !root.isEmpty()) {
             for (IndCategory r : root) {
+                r.setChildrenIds(childrenIds(type, r.getId()));
                 children(r);
             }
         }
@@ -48,6 +56,7 @@ public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, I
         if (children != null && !children.isEmpty()) {
             parent.setChildren(children);
             for (IndCategory c : children) {
+                c.setChildrenIds(childrenIds(c.getCategoryType(), c.getId()));
                 children(c);
             }
         }
@@ -59,10 +68,9 @@ public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, I
      * @param parentId
      * @return
      */
-    @Override
-    public List<String> childrenIds(String type, String parentId) {
-        if (CHILDRENIDS.containsKey(type + parentId)) {
-            return CHILDRENIDS.get(type + parentId);
+    private List<String> childrenIds(String type, String parentId) {
+        if (CHILDREN_IDS.containsKey(type + parentId)) {
+            return CHILDREN_IDS.get(type + parentId);
         }
         logger.debug("开始初始化分类ID列表……{}", parentId);
         List<String> ids = new ArrayList<>();
@@ -71,19 +79,19 @@ public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, I
         if (root != null && !root.isEmpty()) {
             for (IndCategory r : root) {
                 ids.add(r.getId());
-                childrenIds(ids, r);
+                childrenIdss(ids, r);
             }
         }
-        CHILDRENIDS.put(type + parentId, ids);
+        CHILDREN_IDS.put(type + parentId, ids);
         logger.debug("初始化分类ID列表完成。");
         return ids;
     }
 
-    private void childrenIds(List<String> ids, IndCategory parent) {
+    private void childrenIdss(List<String> ids, IndCategory parent) {
         if (parent.getChildren() != null && !parent.getChildren().isEmpty()) {
             for (IndCategory c : parent.getChildren()) {
                 ids.add(c.getId());
-                childrenIds(ids, c);
+                childrenIdss(ids, c);
             }
         }
     }

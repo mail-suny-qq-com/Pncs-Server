@@ -74,6 +74,12 @@ public class IndCategory extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "子节点", dataType = " List", example = "")
     @TableField(exist = false)
     List<IndCategory> children;
+    /**
+     * 子节点
+     */
+    @ApiModelProperty(value = "子节点ID", dataType = " List", example = "")
+    @TableField(exist = false)
+    List<String> childrenIds;
 
     @Override
     public String toString() {

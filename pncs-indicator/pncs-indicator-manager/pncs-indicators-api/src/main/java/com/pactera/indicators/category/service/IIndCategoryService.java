@@ -14,13 +14,4 @@ import java.util.Locale;
  */
 public interface IIndCategoryService extends IBaseService<IndCategory> {
     List<IndCategory> tree(String type, String parentId);
-
-    /**
-     * 根据ID查询所有子ID列表
-     *
-     * @param type
-     * @param parentId
-     * @return
-     */
-    List<String> childrenIds(String type,String parentId);
 }
