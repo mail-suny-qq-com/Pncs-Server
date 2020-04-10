@@ -49,7 +49,7 @@ private static final long serialVersionUID = 1L;
          <#if column.columnName?upper_case != 'CRT_USER_CODE' && column.columnName?upper_case != 'CRT_DATE'  && column.columnName?upper_case != 'CRT_ORG_CODE' &&  column.columnName?upper_case != 'UPD_USER_CODE' && column.columnName?upper_case != 'UPD_DATE'  && column.columnName?upper_case != 'UPD_ORG_CODE'>
             <#if column.remark != ''>
             /** ${column.remark} */
-            @ApiModelProperty(value = "${column.remark}", dataType = " ${column.columnType}", example = "")
+            @ApiModelProperty(value = "${column.remark}", dataType = "${column.columnType}", example = "")
             </#if>
             <#if column.columnKey = 'PRI'>
             @TableId(type = IdType.ASSIGN_ID)

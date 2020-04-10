@@ -1,8 +1,11 @@
 package com.pactera.indicators.indicator.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pactera.core.base.service.impl.BaseServiceImpl;
 import com.pactera.core.message.Message;
+import com.pactera.core.page.Page;
 import com.pactera.core.wrapper.QueryWrapper;
+import com.pactera.indicators.category.service.IIndCategoryService;
 import com.pactera.indicators.indicator.mapper.IndIndicatorInfoMapper;
 import com.pactera.indicators.indicator.model.IndIndicatorInfo;
 import com.pactera.indicators.indicator.service.IIndIndicatorInfoService;
@@ -10,6 +13,7 @@ import com.pactera.indicators.indicator.service.IIndIndicatorInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,6 +30,9 @@ public class IndIndicatorInfoServiceImpl extends BaseServiceImpl<IndIndicatorInf
 
     @Resource
     private IndIndicatorInfoMapper mapper;
+
+    @Autowired
+    IIndCategoryService indCategoryService;
 
     @Override
     public Message<IndIndicatorInfo> save(IndIndicatorInfo model) {
@@ -51,5 +58,22 @@ public class IndIndicatorInfoServiceImpl extends BaseServiceImpl<IndIndicatorInf
         logger.debug("生成指标编号：{}", model.getIeCode());
         model.setStatus("0");
         return super.save(model);
+    }
+
+    /**
+     * 分页查询方法
+     *
+     * @param limit     分页信息
+     * @param offset    页码
+     * @param parameter 查询条件
+     * @return 分页查询结果
+     */
+    @Override
+    public Message<IPage<IndIndicatorInfo>> findForPageList(Integer limit, Integer offset, IndIndicatorInfo parameter) {
+        if (StringUtils.isNotBlank(parameter.getCategoryId())) {
+            parameter.setCategoryIds(indCategoryService.childrenIds(parameter.getIeType(), parameter.getCategoryId()));
+            parameter.setCategoryId(null);
+        }
+        return super.findForPageList(limit, offset, parameter);
     }
 }

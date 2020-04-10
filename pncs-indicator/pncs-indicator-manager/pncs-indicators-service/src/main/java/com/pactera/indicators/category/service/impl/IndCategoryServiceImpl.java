@@ -11,8 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * 指标分类服务实现
@@ -23,7 +22,7 @@ import java.util.Locale;
 @Service
 public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, IndCategory> implements IIndCategoryService {
     private static final Logger logger = LoggerFactory.getLogger(IndCategoryServiceImpl.class);
-
+    private static Map<String, List<String>> CHILDRENIDS = new HashMap<>();
     @Resource
     private IndCategoryMapper mapper;
 
@@ -50,6 +49,41 @@ public class IndCategoryServiceImpl extends BaseServiceImpl<IndCategoryMapper, I
             parent.setChildren(children);
             for (IndCategory c : children) {
                 children(c);
+            }
+        }
+    }
+
+    /**
+     * 根据ID查询所有子ID列表
+     *
+     * @param parentId
+     * @return
+     */
+    @Override
+    public List<String> childrenIds(String type, String parentId) {
+        if (CHILDRENIDS.containsKey(type + parentId)) {
+            return CHILDRENIDS.get(type + parentId);
+        }
+        logger.debug("开始初始化分类ID列表……{}", parentId);
+        List<String> ids = new ArrayList<>();
+        ids.add(parentId);
+        List<IndCategory> root = tree(type, parentId);
+        if (root != null && !root.isEmpty()) {
+            for (IndCategory r : root) {
+                ids.add(r.getId());
+                childrenIds(ids, r);
+            }
+        }
+        CHILDRENIDS.put(type + parentId, ids);
+        logger.debug("初始化分类ID列表完成。");
+        return ids;
+    }
+
+    private void childrenIds(List<String> ids, IndCategory parent) {
+        if (parent.getChildren() != null && !parent.getChildren().isEmpty()) {
+            for (IndCategory c : parent.getChildren()) {
+                ids.add(c.getId());
+                childrenIds(ids, c);
             }
         }
     }

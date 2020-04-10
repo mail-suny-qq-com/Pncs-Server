@@ -17,6 +17,7 @@ import javax.validation.constraints.*;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 指标基本信息实体类
@@ -166,10 +167,18 @@ public class IndIndicatorInfo extends BaseEntity implements Serializable {
     /**
      * 管理部门(解释部门)
      */
-    @ApiModelProperty(value = "管理部门(解释部门)", dataType = " String", example = "")
+    @ApiModelProperty(value = "管理部门(解释部门)", dataType = "String", example = "")
     @TableField("MANAGE_DEPT")
     //@Column(name = "MANAGE_DEPT")
     private String manageDept;
+
+    /**
+     * 管理部门(解释部门)
+     */
+    @ApiModelProperty(value = "分类查询条件", dataType = "List", example = "")
+    @TableField(exist = false)
+    //@Column(name = "")
+    private List<String> categoryIds;
 
     @Override
     public String toString() {
