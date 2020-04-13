@@ -73,9 +73,9 @@
                 AND DIM_CODE
                 <choose>
                     <when test="variable.operators.dimCode != null and variable.operators.dimCode != '' ">${variable.operators.dimCode}</when>
-                    <otherwise> = </otherwise>
+                    <otherwise> like </otherwise>
                 </choose>
-				#{variable.dimCode}
+                CONCAT('%',#{variable.dimCode},'%')
             </if>
 			<if test="variable.datasourceId != null and variable.datasourceId != ''">
                 AND DATASOURCE_ID
@@ -89,9 +89,9 @@
                 AND DIM_NAME
                 <choose>
                     <when test="variable.operators.dimName != null and variable.operators.dimName != '' ">${variable.operators.dimName}</when>
-                    <otherwise> = </otherwise>
+                    <otherwise> like </otherwise>
                 </choose>
-				#{variable.dimName}
+                CONCAT('%',#{variable.dimName},'%')
             </if>
 			<if test="variable.tableName != null and variable.tableName != ''">
                 AND TABLE_NAME
