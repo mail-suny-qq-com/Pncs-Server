@@ -59,7 +59,7 @@ public class Role implements Serializable {
 //    private Set<Menu> menus;
 
     @ManyToMany
-    @JoinTable(name = "sys_roles_depts", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "id")})
+    @JoinTable(name = "sys_role_dept", joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "id")})
     private Set<Dept> depts;
 
     @Column(name = "create_time")

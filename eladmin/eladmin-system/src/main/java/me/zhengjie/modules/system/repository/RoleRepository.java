@@ -33,7 +33,7 @@ public interface RoleRepository extends JpaRepository<Role,String>, JpaSpecifica
      * @param id 菜单ID
      */
     @Modifying
-    @Query(value = "delete from roles_menus where menu_id = ?1",nativeQuery = true)
+    @Query(value = "delete from sys_role_menu where menu_id = ?1",nativeQuery = true)
     void untiedMenu(String id);
 
     /**
