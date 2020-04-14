@@ -1,15 +1,11 @@
 package com.pactera.indicators.indicator.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pactera.core.base.service.impl.BaseServiceImpl;
 import com.pactera.core.message.Message;
-import com.pactera.core.page.Page;
-import com.pactera.core.wrapper.QueryWrapper;
 import com.pactera.indicators.category.service.IIndCategoryService;
 import com.pactera.indicators.indicator.mapper.IndIndicatorInfoMapper;
 import com.pactera.indicators.indicator.model.IndIndicatorInfo;
 import com.pactera.indicators.indicator.service.IIndIndicatorInfoService;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
