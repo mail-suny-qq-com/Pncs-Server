@@ -9,5 +9,9 @@ import com.pactera.indicators.datasource.model.IndDatasource;
 * @date 2020-04-01
 */
 public interface IIndDatasourceService  extends IBaseService<IndDatasource>{
-
+    /**
+     * 数据库参数连接测试
+     * @return /
+     */
+    String sqlParaTest(IndDatasource indDatasource);
 }

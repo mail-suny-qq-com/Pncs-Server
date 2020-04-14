@@ -10,12 +10,17 @@ import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.annotation.Resource;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import me.zhengjie.aop.log.Log;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * 数据源控制类
@@ -41,6 +46,20 @@ public class IndDatasourceController  extends BaseController {
     public Message<IndDatasource> save(@ApiParam(name = "indDatasource", value = "数据源对象") @Validated @RequestBody IndDatasource indDatasource) {
         logger.debug("开始保存数据源信息……");
         return indDatasourceService.save(indDatasource);
+    }
+
+    /**
+     * 测试数据源参数连通性
+     */
+    @Log("测试数据源参数连通性")
+    @ApiOperation("测试数据源参数连通性")
+    @PostMapping(value = "/test")
+    public ResponseEntity<Object> sqlParaTest(@RequestBody IndDatasource indDatasource) {
+        logger.debug("开始测试数据源参数连通性……");
+        Map<String,Object> resultMap = new HashMap<>();
+        String result = indDatasourceService.sqlParaTest(indDatasource);
+        resultMap.put("result",result);
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
     /**
