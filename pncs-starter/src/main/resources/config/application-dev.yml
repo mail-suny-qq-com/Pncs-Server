@@ -67,7 +67,10 @@ sso:
   #ticket 过期时间 90秒
   expiration: 90000
   key: sso-key
-
+smartbi:
+  url: http://localhost:18080/smartbi
+  username: superadmin
+  password: admin
 #是否允许生成代码，生产环境设置为false
 generator:
   enabled: true

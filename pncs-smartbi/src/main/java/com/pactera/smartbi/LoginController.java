@@ -1,7 +1,5 @@
 package com.pactera.smartbi;
 
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.RSA;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -27,25 +25,22 @@ import java.util.Map;
 @RequestMapping("/smartbi")
 @Api(tags = "Smartbi：单点登录接口")
 public class LoginController {
-
-    @Value("${loginCode.expiration}")
-    private Long expiration;
-    @Value("${rsa.private_key}")
-    private String privateKey;
-    @Value("${single.login:false}")
-    private Boolean singleLogin;
-    /*@Value("${default.password}")
-    private String defaultPassword;*/
+    @Value("${smartbi.url:http://localhost:18080/smartbi}")
+    private String smartbiUrl;
+    @Value("${smartbi.username:admin}")
+    private String smartbiUsername;
+    @Value("${smartbi.password:admin}")
+    private String smartbiPassword;
 
 
     @ApiOperation("登录授权")
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@Validated @RequestBody LoginUser user, HttpServletRequest request) {
         // 密码解密
-        RSA rsa = new RSA(privateKey, null);
+        //RSA rsa = new RSA(privateKey, null);
         String username = user.getUsername();
-        String password = new String(rsa.decrypt(user.getPassword(), KeyType.PrivateKey));
-        String url = user.getSmartbiUrl();
+        //String password = new String(rsa.decrypt(user.getPassword(), KeyType.PrivateKey));
+        // String url = user.getSmartbiUrl();
         Map<String, Object> authInfo = new HashMap<String, Object>(2);
         /**
          * smartbi 单点登录集成
@@ -56,12 +51,13 @@ public class LoginController {
 
         // 获取动态密码的示例：
         try {
-            ClientConnector conn = new ClientConnector(url);
-            boolean open = conn.open("admin", "admin"); // 必须以拥有系统管理员角色的用户登录，其他用户登录调用接口获取的token是null
+            ClientConnector conn = new ClientConnector(smartbiUrl);
+            boolean open = conn.open(smartbiUsername, smartbiPassword); // 必须以拥有系统管理员角色的用户登录，其他用户登录调用接口获取的token是null
             if (open) {
                 InvokeResult result = conn.remoteInvoke("LoginTokenModule", "generateLoginToken", new Object[]{username}); // 用户名
                 System.out.println(result.getResult());//result.getResult()就是demo用户的token
                 authInfo.put("smartbiToken", result.getResult());
+                authInfo.put("smartbiUrl", smartbiUrl);
                 conn.close();
             } else {
                 //admin用户登录失败

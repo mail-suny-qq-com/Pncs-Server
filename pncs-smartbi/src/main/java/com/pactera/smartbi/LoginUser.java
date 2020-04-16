@@ -21,15 +21,11 @@ public class LoginUser {
     @NotBlank
     private String password;
 
-    @NotBlank
-    private String smartbiUrl;
-
     @Override
     public String toString() {
         return new StringJoiner(", ", LoginUser.class.getSimpleName() + "[", "]")
                 .add("username='" + username + "'")
                 .add("password='" + password + "'")
-                .add("smartbiUrl='" + smartbiUrl + "'")
                 .toString();
     }
 }
