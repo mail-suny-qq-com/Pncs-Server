@@ -20,6 +20,7 @@
         <module>pncs-core</module>
         <module>pncs-starter</module>
         <module>pncs-indicator</module>
+        <module>pncs-smartbi</module>
     </modules>
 
     <description>文思海辉指标管理平台</description>

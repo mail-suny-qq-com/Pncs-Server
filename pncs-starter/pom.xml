@@ -31,6 +31,11 @@
             <artifactId>pncs-indicators-rest</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-smartbi</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

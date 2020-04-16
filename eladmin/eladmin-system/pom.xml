@@ -71,6 +71,12 @@
 			<artifactId>jsch</artifactId>
 			<version>0.1.55</version>
 		</dependency>
+        <dependency>
+            <groupId>me.zhengjie</groupId>
+            <artifactId>eladmin-common</artifactId>
+            <version>2.4</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
