@@ -69,7 +69,7 @@ sso:
   key: sso-key
 smartbi:
   url: http://localhost:18080/smartbi
-  username: superadmin
+  username: admin
   password: admin
 #是否允许生成代码，生产环境设置为false
 generator:
