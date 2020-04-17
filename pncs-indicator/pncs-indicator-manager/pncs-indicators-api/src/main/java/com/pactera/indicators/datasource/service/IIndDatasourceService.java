@@ -1,6 +1,7 @@
 package com.pactera.indicators.datasource.service;
 
 import com.pactera.core.base.service.IBaseService;
+import com.pactera.core.message.Message;
 import com.pactera.indicators.datasource.model.IndDatasource;
 
 /**
@@ -13,5 +14,5 @@ public interface IIndDatasourceService  extends IBaseService<IndDatasource>{
      * 数据库参数连接测试
      * @return /
      */
-    String sqlParaTest(IndDatasource indDatasource);
+    Message<IndDatasource> sqlParaTest(IndDatasource indDatasource);
 }

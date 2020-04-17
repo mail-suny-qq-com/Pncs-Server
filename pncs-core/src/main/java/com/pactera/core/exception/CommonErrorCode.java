@@ -3,7 +3,7 @@ package com.pactera.core.exception;
 public enum CommonErrorCode implements BaseErrorCode<CommonErrorCode> {
     SUCCESS(0, "成功"), FAILURE(99999, "未知错误"), NO_DATA_FOUND(404, "访问资源不存在"),
     NO_INPUT_PARAMETER(101, "输入参数不能为空"), MAX_INPUT_PARAMETER(102, "输入参数超出允许范围"),
-    SAVE_FAILURE(10001, "保存失败"), NO_UPDATE_ENTITY(10002, "未更新到任何记录");
+    SAVE_FAILURE(10001, "保存失败"),DB_CONNECT_FAILURE(10003, "数据库连接失败"), NO_UPDATE_ENTITY(10002, "未更新到任何记录");
 
     int code;
     String msg;

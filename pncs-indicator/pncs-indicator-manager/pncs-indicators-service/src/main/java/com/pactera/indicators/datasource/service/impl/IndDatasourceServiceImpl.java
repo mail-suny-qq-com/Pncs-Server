@@ -1,6 +1,8 @@
 package com.pactera.indicators.datasource.service.impl;
 
 import com.pactera.core.base.service.impl.BaseServiceImpl;
+import com.pactera.core.exception.CommonErrorCode;
+import com.pactera.core.message.Message;
 import com.pactera.indicators.datasource.mapper.IndDatasourceMapper;
 import com.pactera.indicators.datasource.model.IndDatasource;
 import com.pactera.indicators.datasource.service.IIndDatasourceService;
@@ -25,8 +27,7 @@ public class IndDatasourceServiceImpl  extends BaseServiceImpl<IndDatasourceMapp
     private IndDatasourceMapper mapper;
 
     @Override
-    public String sqlParaTest(IndDatasource indDatasource) {
-        String result = "F";
+    public Message<IndDatasource> sqlParaTest(IndDatasource indDatasource) {
         String dbType = indDatasource.getDatasourceType();
         //创建MYSQL连接信息
         if("mysql".equals(dbType)){
@@ -43,11 +44,11 @@ public class IndDatasourceServiceImpl  extends BaseServiceImpl<IndDatasourceMapp
                 Class.forName(driver);
                 conn = DriverManager.getConnection(jdbcurl, username, password);
                 conn.setAutoCommit(false);
-                result = "S";
+                return Message.success(indDatasource);
             }catch(Exception e) {
                 //连接失败
-                result = "F";
                 logger.error("MYSQL连接失败",e);
+                return Message.failure(CommonErrorCode.DB_CONNECT_FAILURE);
             }finally {
                 try {
                     if(conn != null) {
@@ -57,7 +58,6 @@ public class IndDatasourceServiceImpl  extends BaseServiceImpl<IndDatasourceMapp
                     logger.error("数据源关闭失败",ee);
                 }
             }
-            return result;
         }else if("oracle".equals(dbType)){
             Connection conn=null;
             try {
@@ -72,11 +72,11 @@ public class IndDatasourceServiceImpl  extends BaseServiceImpl<IndDatasourceMapp
                 Class.forName(driver).newInstance();
                 conn = DriverManager.getConnection(jdbcurl, username, password);
                 conn.setAutoCommit(false);
-                result = "S";
+                return Message.success(indDatasource);
             }catch(Exception e) {
                 //连接失败
-                result = "F";
                 logger.error("ORACLE连接失败",e);
+                return Message.failure(CommonErrorCode.DB_CONNECT_FAILURE);
             }finally {
                 try {
                     if(conn != null) {
@@ -86,9 +86,8 @@ public class IndDatasourceServiceImpl  extends BaseServiceImpl<IndDatasourceMapp
                     logger.error("数据源关闭失败",ee);
                 }
             }
-            return result;
         }else{
-            return result;
+            return Message.failure(CommonErrorCode.DB_CONNECT_FAILURE);
         }
     }
 }
