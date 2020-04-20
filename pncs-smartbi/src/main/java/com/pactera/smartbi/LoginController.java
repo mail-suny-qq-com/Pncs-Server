@@ -4,10 +4,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import smartbi.sdk.ClientConnector;
 import smartbi.sdk.InvokeResult;
 
@@ -34,11 +35,11 @@ public class LoginController {
 
 
     @ApiOperation("登录授权")
-    @PostMapping(value = "/login")
-    public ResponseEntity<Object> login(@Validated @RequestBody LoginUser user, HttpServletRequest request) {
+    @PostMapping(value = "/login/{username}")
+    public ResponseEntity<Object> login(@PathVariable("username") String username, HttpServletRequest request) {
         // 密码解密
         //RSA rsa = new RSA(privateKey, null);
-        String username = user.getUsername();
+        //String username = user.getUsername();
         //String password = new String(rsa.decrypt(user.getPassword(), KeyType.PrivateKey));
         // String url = user.getSmartbiUrl();
         Map<String, Object> authInfo = new HashMap<String, Object>(2);
@@ -67,12 +68,5 @@ public class LoginController {
 
         }
         return ResponseEntity.ok(authInfo);
-    }
-
-    @ApiOperation("退出登录")
-    @DeleteMapping(value = "/logout")
-    public ResponseEntity<Object> logout(HttpServletRequest request) {
-        //onlineUserService.logout(tokenProvider.getToken(request));
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
