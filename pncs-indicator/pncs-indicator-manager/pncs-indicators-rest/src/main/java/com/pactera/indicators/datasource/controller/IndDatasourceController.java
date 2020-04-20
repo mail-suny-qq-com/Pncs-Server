@@ -54,12 +54,10 @@ public class IndDatasourceController  extends BaseController {
     @Log("测试数据源参数连通性")
     @ApiOperation("测试数据源参数连通性")
     @PostMapping(value = "/test")
-    public ResponseEntity<Object> sqlParaTest(@RequestBody IndDatasource indDatasource) {
+    public Message<IndDatasource> sqlParaTest(@RequestBody IndDatasource indDatasource) {
         logger.debug("开始测试数据源参数连通性……");
-        Map<String,Object> resultMap = new HashMap<>();
-        String result = indDatasourceService.sqlParaTest(indDatasource);
-        resultMap.put("result",result);
-        return new ResponseEntity<>(resultMap, HttpStatus.OK);
+        //Message<IndDatasource> ms = indDatasourceService.sqlParaTest(indDatasource);
+        return indDatasourceService.sqlParaTest(indDatasource);
     }
 
     /**
