@@ -21,6 +21,7 @@
         <module>pncs-starter</module>
         <module>pncs-indicator</module>
         <module>pncs-smartbi</module>
+        <module>pncs-metadata</module>
     </modules>
 
     <description>文思海辉指标管理平台</description>
@@ -39,6 +40,7 @@
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <pncs.version>${project.version}</pncs.version>
         <hutool.version>5.0.6</hutool.version>
+        <schemacrawler.version>16.6.1</schemacrawler.version>
     </properties>
 
     <dependencies>
