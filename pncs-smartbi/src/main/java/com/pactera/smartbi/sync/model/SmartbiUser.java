@@ -18,7 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @TableName("T_USER")
-public class User implements Serializable {
+public class SmartbiUser implements Serializable {
 
     /**
      *
@@ -81,7 +81,7 @@ public class User implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        User user = (User) o;
+        SmartbiUser user = (SmartbiUser) o;
         return Objects.equals(id, user.id) &&
                 Objects.equals(username, user.username);
     }
