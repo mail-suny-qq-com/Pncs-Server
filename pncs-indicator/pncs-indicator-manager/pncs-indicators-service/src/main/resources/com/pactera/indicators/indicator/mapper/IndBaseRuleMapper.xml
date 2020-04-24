@@ -174,4 +174,15 @@
 				#{variable.updDate}
             </if>
     </select>
+
+
+    <select id="getEntityByIeCode" parameterType="String"
+            resultType="com.pactera.indicators.indicator.model.IndBaseRule">
+        SELECT
+          <include refid="Field"></include>
+        FROM
+          <include refid="tableName"></include>
+        WHERE 1=1
+          AND IE_CODE = #{ieCode}
+    </select>
 </mapper>

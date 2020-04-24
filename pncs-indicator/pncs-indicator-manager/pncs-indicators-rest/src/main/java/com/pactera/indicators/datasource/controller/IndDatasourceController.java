@@ -11,16 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.annotation.Resource;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import me.zhengjie.aop.log.Log;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
 * 数据源控制类
@@ -118,5 +114,11 @@ public class IndDatasourceController  extends BaseController {
     public Message<IPage<IndDatasource>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndDatasource indDatasource) {
         logger.debug("开始查询数据源列表信息……");
         return indDatasourceService.findForPageList(limit, offset, indDatasource);
+    }
+
+    @ApiOperation("查询所有数据源信息")
+    @GetMapping(value = "/source/all")
+    public Message<List<IndDatasource>> getSources(){
+        return indDatasourceService.findForList(new IndDatasource());
     }
  }

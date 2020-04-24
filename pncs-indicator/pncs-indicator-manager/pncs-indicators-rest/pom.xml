@@ -22,5 +22,15 @@
             <artifactId>eladmin-logging</artifactId>
             <version>2.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-metadata</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>me.zhengjie</groupId>
+            <artifactId>eladmin-generator</artifactId>
+            <version>2.4</version>
+        </dependency>
     </dependencies>
 </project>

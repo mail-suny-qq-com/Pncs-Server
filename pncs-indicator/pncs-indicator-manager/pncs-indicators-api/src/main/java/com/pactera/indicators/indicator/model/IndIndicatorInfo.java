@@ -180,6 +180,27 @@ public class IndIndicatorInfo extends BaseEntity implements Serializable {
     //@Column(name = "")
     private List<String> categoryIds;
 
+    //2020/4/21 lf 基础指标vo类中增加字段(数据源、数据表名、对应字段名称、适用维度)
+    @ApiModelProperty(value = "数据源", dataType = "String", example = "")
+    @TableField(exist = false)
+    private String dataSource;
+
+    @ApiModelProperty(value = "数据表名", dataType = "String", example = "")
+    @TableField(exist = false)
+    private String dataTable;
+
+    @ApiModelProperty(value = "对应字段名称", dataType = "String", example = "")
+    @TableField(exist = false)
+    private String periodCode;
+
+    @ApiModelProperty(value = "维度编号", dataType = "String", example = "")
+    @TableField(exist = false)
+    private List<String> dimCodes;
+
+    @ApiModelProperty(value = "维度对应字段", dataType = "String", example = "")
+    @TableField(exist = false)
+    private List<String> dimColumns;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IndBaseRuleMapper extends BaseMapper<IndBaseRule> {
 
+    IndBaseRule getEntityByIeCode(String ieCode);
 }
