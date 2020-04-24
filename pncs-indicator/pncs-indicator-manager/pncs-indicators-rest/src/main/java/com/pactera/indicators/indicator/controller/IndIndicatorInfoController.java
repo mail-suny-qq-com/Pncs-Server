@@ -93,7 +93,7 @@ public class IndIndicatorInfoController  extends BaseController {
     /**
     * 查询指标基本信息信息列表(分页)
     */
-    @ApiOperation(httpMethod = "GET", value = "查询指标基本信息列表可分页", notes = "")
+    /*@ApiOperation(httpMethod = "GET", value = "查询指标基本信息列表可分页", notes = "")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "size", value = "每页条数"),
     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "page", value = "页码"),
     @ApiImplicitParam(paramType = "query", dataType = "IndIndicatorInfo", name = "indIndicatorInfo", value = "查询条件")})
@@ -101,5 +101,22 @@ public class IndIndicatorInfoController  extends BaseController {
     public Message<IPage<IndIndicatorInfo>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndIndicatorInfo indIndicatorInfo) {
         logger.debug("开始查询指标基本信息列表信息……");
         return indIndicatorInfoService.findForPageList(limit, offset, indIndicatorInfo);
+    }*/
+
+    //start 2020.4.21 lf 关联指标计算规则表+指标维度关系表
+    /**
+     * 查询指标基本信息信息列表(分页)+计算规则
+     */
+    @ApiOperation(httpMethod = "GET", value = "查询指标基本信息列表可分页", notes = "")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "size", value = "每页条数"),
+            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "page", value = "页码"),
+            @ApiImplicitParam(paramType = "query", dataType = "IndIndicatorInfo", name = "indIndicatorInfo", value = "查询条件")})
+    @GetMapping
+    public Message<IPage<IndIndicatorInfo>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndIndicatorInfo indIndicatorInfo) {
+        logger.debug("开始查询指标基本信息列表信息……");
+
+        Message<IPage<IndIndicatorInfo>> T = indIndicatorInfoService.findForPageListBean(limit, offset, indIndicatorInfo);
+        System.out.println(1);
+        return T;
     }
  }

@@ -10,6 +10,7 @@ import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.annotation.Resource;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -101,5 +102,11 @@ public class IndDimensionController  extends BaseController {
     public Message<IPage<IndDimension>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndDimension indDimension) {
         logger.debug("开始查询维度管理列表信息……");
         return indDimensionService.findForPageList(limit, offset, indDimension);
+    }
+
+    @ApiOperation("查询所有维度数据")
+    @GetMapping(value = "/dim/all")
+    public Message<List<IndDimension>> getDims(){
+        return indDimensionService.findForList(new IndDimension());
     }
  }
