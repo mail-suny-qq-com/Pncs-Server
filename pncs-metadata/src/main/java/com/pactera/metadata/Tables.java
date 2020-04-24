@@ -14,14 +14,14 @@ import java.util.Collection;
  * 获取table工具
  */
 public class Tables {
-    public Collection<Table> getTables(Connection connection, Schema schema, String namePatern) {
+    public static Collection<Table> getTables(Connection connection, Schema schema, String namePatern) {
         // Create the options
         final SchemaCrawlerOptionsBuilder optionsBuilder =
                 SchemaCrawlerOptionsBuilder.builder()
                         // Set what details are required in the schema - this affects the
                         // time taken to crawl the schema
                         .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard())
-                        .includeSchemas(new RegularExpressionInclusionRule(schema.getName()))
+                        .includeSchemas(new RegularExpressionInclusionRule(schema.getCatalogName()))
                         .includeTables(tableFullName -> tableFullName.contains(namePatern));
         final SchemaCrawlerOptions options = optionsBuilder.toOptions();
 
