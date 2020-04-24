@@ -1,6 +1,8 @@
 package com.pactera.core.wrapper;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.google.common.base.CaseFormat;
+import org.springframework.core.annotation.AnnotationUtils;
 
 /**
  * 重写Wrapper,实现 属性与字段的映射关系
@@ -22,6 +24,7 @@ public class QueryWrapper<T> extends com.baomidou.mybatisplus.core.conditions.qu
 
     @Override
     protected String columnToString(String column) {
+       // AnnotationUtils.getAnnotation(T.class, TableField.class),
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, column);
     }
 }

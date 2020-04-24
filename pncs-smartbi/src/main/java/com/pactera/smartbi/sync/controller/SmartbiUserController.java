@@ -37,7 +37,7 @@ public class SmartbiUserController extends BaseController {
     /**
      * 新增保存指标分类
      */
-    @SLog("用户信息同步")
+    //@SLog("用户信息同步")
     @ApiOperation(httpMethod = "POST", value = "用户信息同步", nickname = "syncUser")
     @PostMapping("/sync/{username}")
     public Message<SmartbiUser> sync(@ApiParam(name = "username", type = "path", value = "用户编号") @Validated @PathVariable("username") String username) {

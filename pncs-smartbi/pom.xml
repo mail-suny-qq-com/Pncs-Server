@@ -109,4 +109,17 @@
             <systemPath>${basedir}/lib/slf4j-log4j12-1.7.30.jar</systemPath>
         </dependency>
     </dependencies>
+
+
+    <build>
+        <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>${basedir}/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

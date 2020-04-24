@@ -29,8 +29,7 @@ public class SmartbiUser implements Serializable {
      * 用户ID
      */
     @ApiModelProperty(value = "用户ID", dataType = " String", example = "")
-    @TableId(type = IdType.ASSIGN_ID)
-    @TableField("C_USERID")
+    @TableId(type = IdType.ASSIGN_ID,value="C_USERID")
     //@Column(name = "ID")
     private String id;
 
