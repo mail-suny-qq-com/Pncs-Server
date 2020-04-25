@@ -11,13 +11,6 @@
 
     <artifactId>pncs-smartbi</artifactId>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.48</version>
-        </dependency>
-
         <dependency>
             <groupId>com.pactera</groupId>
             <artifactId>pncs-core</artifactId>
@@ -109,17 +102,15 @@
             <systemPath>${basedir}/lib/slf4j-log4j12-1.7.30.jar</systemPath>
         </dependency>
     </dependencies>
-
-
     <build>
         <resources>
-            <resource>
+            <!--<resource>
                 <directory>lib</directory>
                 <targetPath>${basedir}/lib/</targetPath>
                 <includes>
                     <include>**/*.jar</include>
                 </includes>
-            </resource>
+            </resource>-->
         </resources>
     </build>
 </project>

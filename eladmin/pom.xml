@@ -146,12 +146,7 @@
             <version>1.5.21</version>
         </dependency>-->
 
-        <!--Mysql依赖包-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
         <!-- druid数据源驱动 -->
         <dependency>
             <groupId>com.alibaba</groupId>
