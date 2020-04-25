@@ -234,7 +234,7 @@ public class UserServiceImpl implements UserService {
         StringBuilder countSqlSb = new StringBuilder();
         countSqlSb.append(" select count(1) from sys_user u where 1=1 ");
         StringBuilder selectSqlSb = new StringBuilder();
-        selectSqlSb.append(" select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from sys_user u left join sys_dept d on u.dept_id=d.id where 1=1 ");
+        selectSqlSb.append(" select u.id as \"id\",u.username as \"username\",u.nick_name as \"nickname\",u.email as \"email\",u.phone as \"phone\",d.name as  \"deptname\" from sys_user u left join sys_dept d on u.dept_id=d.id where 1=1 ");
         StringBuilder whereSql = new StringBuilder();
         Map<String,Object> params = new HashMap<>();
         if(StrUtil.isNotEmpty(criteria.getDeptId())){
@@ -255,7 +255,7 @@ public class UserServiceImpl implements UserService {
         {
             countQuery.setParameter(entry.getKey(),entry.getValue());
         }
-        BigInteger totalCount = (BigInteger) countQuery.getSingleResult();
+        Object totalCount =  countQuery.getSingleResult();
         String orderBySql = " order by u.create_time desc ";
         String selectSql = new StringBuilder().append(selectSqlSb).append(whereSql).append(orderBySql).toString();
         Query query = entityManager.createNativeQuery(selectSql);
@@ -267,7 +267,7 @@ public class UserServiceImpl implements UserService {
         query.setFirstResult((int) pageable.getOffset());
         query.setMaxResults(pageable.getPageSize());
         List list= query.getResultList();
-        Page page = new PageImpl<>(list,pageable,totalCount.longValue());
+        Page page = new PageImpl<>(list,pageable,Integer.valueOf(totalCount.toString()));
         return page;
     }
 }

@@ -77,7 +77,11 @@
             <version>2.4</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.pactera</groupId>
+            <artifactId>pncs-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

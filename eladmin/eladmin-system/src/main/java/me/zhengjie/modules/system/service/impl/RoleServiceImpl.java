@@ -291,15 +291,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List queryUserByRole(String roleId) {
-        String sql = "select u.id,u.username,u.nick_name nickname,u.email,u.phone,d.name deptname from sys_user_role ur left join sys_user u on ur.user_id=u.id left join sys_dept d on u.dept_id=d.id where role_id=:roleId";
-        return entityManager.createNativeQuery(sql).setParameter("roleId",roleId).unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).getResultList();
+       String sql = "select u.id as \"id\",u.username as \"username\",u.nick_name as \"nickname\",u.email as \"email\",u.phone as \"phone\",d.name as  \"deptname\" from sys_user_role ur left join sys_user u on ur.user_id=u.id left join sys_dept d on u.dept_id=d.id where role_id=?";
+       return entityManager.createNativeQuery(sql).setParameter(1,roleId).unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).getResultList();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveUserRoles(String roleId,String[] userIds) {
         String sql = "insert into sys_user_role values(?,?)";
-        entityManager.createNativeQuery("delete from sys_user_role where role_id=:roleId").setParameter("roleId",roleId).executeUpdate();
+        entityManager.createNativeQuery("delete from sys_user_role where role_id=?").setParameter(1,roleId).executeUpdate();
         for (String userId:userIds){
             entityManager.createNativeQuery(sql).setParameter(1,userId).setParameter(2,roleId).executeUpdate();
         }
