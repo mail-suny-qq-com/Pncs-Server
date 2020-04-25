@@ -8,7 +8,7 @@ spring:
   freemarker:
     check-template-location: false
   profiles:
-    active: devora
+    active: dev
   jackson:
     time-zone: GMT+8
   data:
@@ -20,8 +20,8 @@ spring:
   jpa:
     properties:
       hibernate:
-      #dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        dialect: org.hibernate.dialect.Oracle10gDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        #dialect: org.hibernate.dialect.Oracle10gDialect
     open-in-view: true
 
   redis:
@@ -41,8 +41,8 @@ mybatis:
     map-underscore-to-camel-case: true
 #page
 pagehelper:
-  #helperDialect: mysql
-  helperDialect: oracle
+  helperDialect: mysql
+  #helperDialect: oracle
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql

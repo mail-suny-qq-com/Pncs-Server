@@ -14,7 +14,7 @@ spring:
           password: root
         smartbi:
           driverClassName: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:6688/smartbidemo?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT
+          url: jdbc:mysql://127.0.0.1:6688/smartbidemo
           username: admin
           password: admin
       druid:
