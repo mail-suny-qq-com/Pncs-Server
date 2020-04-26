@@ -70,8 +70,8 @@ public class DataSource {
                 SchemaCrawlerOptionsBuilder.builder()
                         // Set what details are required in the schema - this affects the
                         // time taken to crawl the schema
-                        .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-        //.includeSchemas(new RegularExpressionInclusionRule(regular));
+                        .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard())
+        .includeSchemas(new RegularExpressionInclusionRule(name));
         // .includeTables(tableFullName -> !tableFullName.contains(""));
         final SchemaCrawlerOptions options = optionsBuilder.toOptions();
 
