@@ -79,7 +79,7 @@ public class DataSource {
         try {
             final Catalog catalog = SchemaCrawlerUtility.getCatalog(connection, options);
             for (Schema schema : catalog.getSchemas()) {
-                if (name.equalsIgnoreCase(schema.getName())) {
+                if (name.equalsIgnoreCase(schema.getCatalogName()) || name.equalsIgnoreCase(schema.getFullName()) || name.equalsIgnoreCase(schema.toString())) {
                     return schema;
                 }
             }

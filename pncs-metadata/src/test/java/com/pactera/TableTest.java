@@ -23,8 +23,8 @@ public class TableTest {
         log.info("test hello 2");
         Connection conn = null;
         try {
-            conn = DataSource.getConnection("jdbc:mysql://127.0.0.1:3306/sshs?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT", "root", "root");
-            Collection<Table> tables = Tables.getTables(conn, DataSource.getSchema(conn, "sshs"), "");
+            conn = DataSource.getConnection("jdbc:mysql://127.0.0.1:3306/pncs", "root", "root");
+            Collection<Table> tables = Tables.getTables(conn, DataSource.getSchema(conn, "pncs"), "sys");
             log.debug(tables.toString());
         } finally {
             if (conn != null) {
