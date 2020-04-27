@@ -41,7 +41,7 @@ public class SmartbiUserController extends BaseController {
     @ApiOperation(httpMethod = "POST", value = "用户信息同步", nickname = "syncUser")
     @PostMapping("/sync/{username}")
     public Message<SmartbiUser> sync(@ApiParam(name = "username", type = "path", value = "用户编号") @Validated @PathVariable("username") String username) {
-        logger.debug("开始保存指标分类信息……");
+        logger.debug("开始同步用户信息……");
         return userService.sync(username);
     }
 

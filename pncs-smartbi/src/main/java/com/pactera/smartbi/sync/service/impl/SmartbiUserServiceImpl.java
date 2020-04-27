@@ -31,16 +31,20 @@ public class SmartbiUserServiceImpl extends BaseServiceImpl<SmartbiUserMapper, S
     @Override
     public Message sync(String username) {
         logger.info("开始同步用户信息{}", username);
-        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
-        wrapper.eq("username", username);
+        SysUser u = new SysUser();
+        u.setUsername(username);
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>(u);
+        //wrapper.eq("username", username);
         //wrapper.eq("enabled", "1");
         SysUser user = sysUserMapper.selectOne(wrapper);
-        QueryWrapper<SmartbiUser> swrapper = new QueryWrapper<>();
+        SmartbiUser su = new SmartbiUser();
+        QueryWrapper<SmartbiUser> swrapper = new QueryWrapper<>(su);
         swrapper.eq("username", username);
         SmartbiUser suser = smartbiUserMapper.selectOne(swrapper);
         if (suser == null) {
             suser = new SmartbiUser();
         }
+        suser.setUsername(username);
         suser.setUserdesc(user.getNickName());
         suser.setUseralias(user.getNickName());
         suser.setIsenabled(user.getEnabled());

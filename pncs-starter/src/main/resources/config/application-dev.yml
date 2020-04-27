@@ -14,7 +14,7 @@ spring:
           password: root
         smartbi:
           driverClassName: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:6688/smartbidemo
+          url: jdbc:mysql://127.0.0.1:6688/smartbidemo?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
           username: admin
           password: admin
       druid:
