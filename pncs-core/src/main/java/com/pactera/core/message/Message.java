@@ -101,7 +101,7 @@ public class Message<T> implements Serializable {
     private Message(int code) {
         this.code = code;
         this.msg = Message.getMessage(code);
-        if (SUCCESS_CODE == this.code && StringUtils.isEmpty(this.msg)) {
+        if (SUCCESS_CODE == this.code && StringUtils.isBlank(this.msg)) {
             this.msg = "操作成功";
         }
     }
