@@ -114,9 +114,6 @@ public class IndIndicatorInfoController  extends BaseController {
     @GetMapping
     public Message<IPage<IndIndicatorInfo>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndIndicatorInfo indIndicatorInfo) {
         logger.debug("开始查询指标基本信息列表信息……");
-
-        Message<IPage<IndIndicatorInfo>> T = indIndicatorInfoService.findForPageListBean(limit, offset, indIndicatorInfo);
-        System.out.println(1);
-        return T;
+        return indIndicatorInfoService.findForPageListBean(limit, offset, indIndicatorInfo);
     }
  }
