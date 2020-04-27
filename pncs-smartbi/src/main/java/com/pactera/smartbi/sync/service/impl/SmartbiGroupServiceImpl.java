@@ -11,7 +11,6 @@ import com.pactera.smartbi.sync.service.ISmartbiGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -52,11 +51,9 @@ public class SmartbiGroupServiceImpl extends BaseServiceImpl<SmartbiGroupMapper,
         sGroup.setPgroupid(dept.getPid());
         if (sGroup.getId() == null) {
             sGroup.setId(dept.getId());
-            smartbiGroupMapper.insert(sGroup);
-            return Message.success();
+            return Message.success(smartbiGroupMapper.insert(sGroup));
         } else {
-            smartbiGroupMapper.updateById(sGroup);
-            return Message.success();
+            return Message.success(smartbiGroupMapper.updateById(sGroup));
         }
     }
 }

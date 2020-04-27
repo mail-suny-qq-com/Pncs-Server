@@ -5,12 +5,13 @@ server:
       timeout: 600s
     contextPath: /api
 spring:
-  freemarker:
-    check-template-location: false
   profiles:
     active: dev
   jackson:
     time-zone: GMT+8
+    default-property-inclusion: non_null
+  freemarker:
+    check-template-location: false
   data:
     redis:
       repositories:
