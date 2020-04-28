@@ -24,7 +24,7 @@ import javax.annotation.Resource;
  * @date 2020-04-01
  */
 @Api(tags = "机构信息同步")
-@RestController("smartbiDeptController")
+@RestController
 @Version(1)
 @RequestMapping("/{version:v\\d+}/smartbi/dept")
 public class SmartbiGroupController extends BaseController {

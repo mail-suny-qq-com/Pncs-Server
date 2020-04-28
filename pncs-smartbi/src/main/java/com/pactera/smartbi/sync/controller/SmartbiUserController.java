@@ -25,7 +25,7 @@ import javax.annotation.Resource;
  * @date 2020-04-01
  */
 @Api(tags = "用户信息同步")
-@RestController("smartbiUserController")
+@RestController
 @Version(1)
 @RequestMapping("/{version:v\\d+}/smartbi/user")
 public class SmartbiUserController extends BaseController {
