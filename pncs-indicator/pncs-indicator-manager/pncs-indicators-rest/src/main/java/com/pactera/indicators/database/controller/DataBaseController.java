@@ -3,6 +3,7 @@ package com.pactera.indicators.database.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.pactera.core.exception.CommonErrorCode;
 import com.pactera.core.message.Message;
 import com.pactera.core.util.SpringUtil;
 import com.pactera.core.version.Version;
@@ -13,6 +14,8 @@ import com.pactera.metadata.Tables;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import me.zhengjie.domain.ColumnInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
@@ -35,7 +38,7 @@ import java.util.Map;
 @RequestMapping("/{version:v\\d+}/database")
 @Api(tags = "数据库信息")
 public class DataBaseController {
-
+    private static final Logger logger = LoggerFactory.getLogger(DataBaseController.class);
     @Resource
     private IIndDatasourceService indDatasourceService;
 
@@ -54,12 +57,16 @@ public class DataBaseController {
                 tableInfos.add(new TableInfo(table.getName(),"","","", ObjectUtil.isNotEmpty(table.getRemarks()) ? table.getRemarks() : ""+i));
             }
 
+        } catch(Exception e) {
+            //连接失败
+            logger.error("数据库连接失败",e);
+            return Message.failure(CommonErrorCode.DB_CONNECT_FAILURE);
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("数据源关闭失败",e);
                 }
             }
         }
@@ -91,12 +98,16 @@ public class DataBaseController {
                                 "")
                 );
             }
+        } catch(Exception e) {
+            //连接失败
+            logger.error("数据库连接失败",e);
+            return Message.failure(CommonErrorCode.DB_CONNECT_FAILURE);
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("数据源关闭失败",e);
                 }
             }
         }
