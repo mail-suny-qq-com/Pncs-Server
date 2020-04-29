@@ -1,5 +1,6 @@
 package com.pactera.indicators.indicator.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pactera.core.base.controller.BaseController;
 import com.pactera.core.message.Message;
@@ -101,5 +102,19 @@ public class IndDeriveRuleController  extends BaseController {
     public Message<IPage<IndDeriveRule>> queryPageList(@RequestParam(value = "size", required = false) Integer limit, @RequestParam(value = "page", required = false) Integer offset, @ModelAttribute IndDeriveRule indDeriveRule) {
         logger.debug("开始查询衍生指标规则表列表信息……");
         return indDeriveRuleService.findForPageList(limit, offset, indDeriveRule);
+    }
+
+    @ApiOperation("根据指标id查询衍生指标规则表信息")
+    @RequestMapping(value = "/getIndDeriveRule",method = RequestMethod.POST)
+    public Message<IndDeriveRule> getIndDeriveRule(@RequestBody() JSONObject jsonParam){
+        logger.debug("开始根据指标id查询衍生指标规则表信息……");
+        return indDeriveRuleService.getIndDeriveRule(jsonParam);
+    }
+
+    @ApiOperation("保存四则运算")
+    @RequestMapping(value = "/saveArithmetic",method = RequestMethod.POST)
+    public Message<IndDeriveRule> saveArithmetic(@RequestBody() JSONObject jsonParam){
+        logger.debug("开始保存衍生指标规则表信息-四则运算……");
+        return indDeriveRuleService.saveArithmetic(jsonParam);
     }
  }
