@@ -11,7 +11,7 @@ import com.pactera.indicators.datasource.model.IndDatasource;
 */
 public interface IIndDatasourceService  extends IBaseService<IndDatasource>{
     /**
-     * 数据库参数连接测试
+     * 数据库参数连接测试1
      * @return /
      */
     Message<IndDatasource> sqlParaTest(IndDatasource indDatasource);
