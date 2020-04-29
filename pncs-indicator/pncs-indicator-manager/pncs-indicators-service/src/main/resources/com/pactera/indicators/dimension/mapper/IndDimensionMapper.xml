@@ -214,4 +214,9 @@
 				#{variable.updDate}
             </if>
     </select>
+    <!--查询维度编号最大值（生成新的参数编号）-->
+    <select id="maxDimCode" parameterType="String"
+        resultType="String">
+    select max(DIM_CODE) from   <include refid="tableName"></include>
+    </select>
 </mapper>
