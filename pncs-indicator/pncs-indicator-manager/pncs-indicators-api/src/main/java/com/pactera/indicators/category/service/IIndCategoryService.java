@@ -14,4 +14,5 @@ import java.util.Locale;
  */
 public interface IIndCategoryService extends IBaseService<IndCategory> {
     List<IndCategory> tree(String type, String parentId);
+    List<IndCategory> treeInfo(String type, String parentId);
 }

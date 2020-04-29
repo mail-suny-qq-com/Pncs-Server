@@ -1,20 +1,18 @@
 package com.pactera.smartbi.sync.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.pactera.core.model.BaseEntity;
-import com.pactera.core.util.BeanUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.ibatis.type.Alias;
-import javax.validation.constraints.*;
-import java.util.Date;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
 * 用户信息同步实体类
@@ -34,8 +32,7 @@ private static final long serialVersionUID = 1L;
 
             /** ID */
             @ApiModelProperty(value = "ID", dataType = "String", example = "")
-            @TableId(type = IdType.ASSIGN_ID)
-            @TableField("id")
+            @TableId(type = IdType.ASSIGN_ID,value="id")
             //@Column(name = "id")
             private String id;
             /** 头像 */

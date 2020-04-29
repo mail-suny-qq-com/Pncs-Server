@@ -25,7 +25,8 @@ import java.util.jar.JarFile;
  * @author Suny
  * @date 2018-09-23
  */
-@ApiModel("用户信息")
+
+@ApiModel("返回信息")
 public class Message<T> implements Serializable {
     private final static int SUCCESS_CODE = 0;
     private final static Logger logger = LoggerFactory.getLogger(Message.class);
@@ -101,7 +102,7 @@ public class Message<T> implements Serializable {
     private Message(int code) {
         this.code = code;
         this.msg = Message.getMessage(code);
-        if (SUCCESS_CODE == this.code && StringUtils.isEmpty(this.msg)) {
+        if (SUCCESS_CODE == this.code && (StringUtils.isBlank(this.msg) || this.msg.equalsIgnoreCase(SUCCESS_CODE + ""))) {
             this.msg = "操作成功";
         }
     }
@@ -249,6 +250,14 @@ public class Message<T> implements Serializable {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     /**

@@ -118,4 +118,16 @@ public class IndCategoryController extends BaseController {
         logger.debug("开始查询指标分类列表信息……");
         return Message.success(indCategoryService.tree(type, parentId));
     }
+
+    /**
+     * 查询指标分类列表(树状结构)，包含指标信息
+     */
+    @ApiOperation(httpMethod = "GET", value = "查询指标分类列表(树状结构)", notes = "")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", dataType = "String", name = "type", value = "类型"),
+            @ApiImplicitParam(paramType = "path", dataType = "String", name = "parentId", value = "父节点ID")})
+    @GetMapping("/treeInfo/{type}/{parentId:0}")
+    public Message<List<IndCategory>> treeInfoList(@PathVariable(value = "type") String type, @PathVariable(value = "parentId") String parentId) {
+        logger.debug("开始查询指标分类列表+指标信息……");
+        return Message.success(indCategoryService.treeInfo(type, parentId));
+    }
 }

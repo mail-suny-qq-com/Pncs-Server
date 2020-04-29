@@ -1,7 +1,6 @@
 package com.pactera.smartbi.sync.controller;
 
 import com.pactera.core.base.controller.BaseController;
-import com.pactera.core.log.SLog;
 import com.pactera.core.message.Message;
 import com.pactera.core.version.Version;
 import com.pactera.smartbi.sync.model.SmartbiUser;
@@ -20,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 指标分类控制类
+ * 用户信息同步
  *
  * @author Suny
  * @date 2020-04-01
  */
 @Api(tags = "用户信息同步")
-@RestController("smartbiUserController")
+@RestController
 @Version(1)
 @RequestMapping("/{version:v\\d+}/smartbi/user")
 public class SmartbiUserController extends BaseController {
@@ -35,7 +34,7 @@ public class SmartbiUserController extends BaseController {
     private ISmartbiUserService userService;
 
     /**
-     * 新增保存指标分类
+     * 用户信息同步
      */
     //@SLog("用户信息同步")
     @ApiOperation(httpMethod = "POST", value = "用户信息同步", nickname = "syncUser")
